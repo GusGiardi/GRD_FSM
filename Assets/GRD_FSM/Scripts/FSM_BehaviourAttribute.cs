@@ -1,16 +1,19 @@
-[System.AttributeUsage(System.AttributeTargets.Class, Inherited = false)]
-public class FSM_BehaviourAttribute : System.Attribute
+namespace GRD.FSM
 {
-    private string path;
-
-    public string Path
+    [System.AttributeUsage(System.AttributeTargets.Class, Inherited = false)]
+    public class FSM_BehaviourAttribute : System.Attribute
     {
-        get { return this.path; }
-        set { this.path = value; }
-    }
+        private string path;
 
-    public FSM_BehaviourAttribute(string path)
-    {
-        this.path = path;
+        public string Path
+        {
+            get { return this.path; }
+            set { this.path = value; }
+        }
+
+        public FSM_BehaviourAttribute(string path)
+        {
+            this.path = path;
+        }
     }
 }

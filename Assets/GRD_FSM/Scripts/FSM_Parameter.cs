@@ -2,49 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class FSM_Parameter
+namespace GRD.FSM
 {
-    [SerializeField] string _name;
-
-    public enum ParameterType
+    [System.Serializable]
+    public class FSM_Parameter
     {
-        Boolean,
-        Integer,
-        Float,
-        Trigger
-    }
+        [SerializeField] string _name;
 
-    [SerializeField] ParameterType _parameterType;
-
-    [SerializeField] bool _boolValue;
-    [SerializeField] int _intValue;
-    [SerializeField] float _floatValue;
-
-    public string name => _name;
-    public ParameterType parameterType => _parameterType;
-
-    public bool boolValue { get => _boolValue; set => _boolValue = value; }
-    public int intValue { get => _intValue; set => _intValue = value; }
-    public float floatValue { get => _floatValue; set => _floatValue = value; }
-
-    public FSM_Parameter(string name, ParameterType parameterType)
-    {
-        _name = name;
-        _parameterType = parameterType;
-    }
-
-    public object GetValue()
-    {
-        switch (_parameterType)
+        public enum ParameterType
         {
-            case ParameterType.Boolean:
-            default:
-                return _boolValue;
-            case ParameterType.Integer:
-                return _intValue;
-            case ParameterType.Float:
-                return _floatValue;
+            Boolean,
+            Integer,
+            Float,
+            Trigger
+        }
+
+        [SerializeField] ParameterType _parameterType;
+
+        [SerializeField] bool _boolValue;
+        [SerializeField] int _intValue;
+        [SerializeField] float _floatValue;
+
+        public string name => _name;
+        public ParameterType parameterType => _parameterType;
+
+        public bool boolValue { get => _boolValue; set => _boolValue = value; }
+        public int intValue { get => _intValue; set => _intValue = value; }
+        public float floatValue { get => _floatValue; set => _floatValue = value; }
+
+        public FSM_Parameter(string name, ParameterType parameterType)
+        {
+            _name = name;
+            _parameterType = parameterType;
+        }
+
+        public object GetValue()
+        {
+            switch (_parameterType)
+            {
+                case ParameterType.Boolean:
+                default:
+                    return _boolValue;
+                case ParameterType.Integer:
+                    return _intValue;
+                case ParameterType.Float:
+                    return _floatValue;
+            }
         }
     }
 }

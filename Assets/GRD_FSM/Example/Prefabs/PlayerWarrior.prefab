@@ -1,0 +1,595 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3240292296703653068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3240292296703653069}
+  m_Layer: 1
+  m_Name: AttackAreas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3240292296703653069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296703653068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3240292297656867604}
+  - {fileID: 3240292297094159610}
+  m_Father: {fileID: 3240292296955349401}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3240292296955349405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3240292296955349401}
+  - component: {fileID: 3240292296955349400}
+  - component: {fileID: 3240292296955349407}
+  - component: {fileID: 3240292296955349406}
+  - component: {fileID: 3240292296955349397}
+  - component: {fileID: 3240292296955349403}
+  - component: {fileID: 3240292296955349402}
+  - component: {fileID: 3240292296955349396}
+  m_Layer: 1
+  m_Name: PlayerWarrior
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3240292296955349401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3240292296703653069}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3240292296955349400
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 897235478038442474, guid: f04cd165824d6fb40b7374405e716daf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!70 &3240292296955349407
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: ca4121f80c911d84285d1297502c4ab5, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.8}
+  m_Size: {x: 0.5, y: 1.5}
+  m_Direction: 0
+--- !u!50 &3240292296955349406
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &3240292296955349397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91510981f7c3cf4439dcc32650da92a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3240292296955349403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7880f974cfbf0e149aa7706617cc0181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 3240292296955349397}
+  _moveSpeed: 5
+  _moveAcceleration: 10
+  _airAcceleration: 2
+  _facingRight: 1
+  _jumpForce: 12
+  _jumpAntecipationTime: 0.1
+  _jumpRecoveryTime: 0.25
+  _cancelJumpForce: 10
+  _groundDetectionRayOrigin: {x: 0, y: 0.5}
+  _groundDetectionRayDistance: 0.7
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  _onGround: 0
+  _enemyHeadDetectionBoxSize: {x: 0.5, y: 0.01}
+  _otherPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 2
+  _enemyHeadJumpForce: 3
+  _attackAreasParent: {fileID: 3240292296703653069}
+  _myAttackArea: {fileID: 3240292297656867606}
+  _downThrustAttackArea: {fileID: 3240292297094159611}
+  _attackPower: 0
+  _attackKnockback: 3
+  _maxChargeTime: 2
+  _chargePowerMultiplier: 5
+  _currentCharge: 0
+  _attackCooldownTime: 0.75
+  _downThrust: 0
+  _defending: 0
+  _upDefense: 0
+  _defenseVelocityMultiplier: 0.3
+  _defenseKnockbackMultiplier: 0.5
+  _maxDotProdForSuccessfulDefense: -0.5
+  _damageTime: 1
+  _invincibilityTime: 1
+  _damageLayer:
+    serializedVersion: 2
+    m_Bits: 4
+  _damageJumpForce: 4
+  _invincibilityColor: {r: 1, g: 1, b: 1, a: 0.62352943}
+  _spriteRenderer: {fileID: 3240292296955349400}
+--- !u!114 &3240292296955349402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90492001c229a7e44a536f96e360d20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FSM_Name: Player FSM
+  _states:
+  - _name: Idle
+    _behaviour:
+      id: 0
+    _transitions:
+    - _toStateIndex: 1
+      _conditions:
+      - _parameterIndex: 1
+        _conditionOperator: 0
+        _referenceValue: 0
+    - _toStateIndex: 4
+      _conditions:
+      - _parameterIndex: 0
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 346
+      y: 370
+      width: 200
+      height: 50
+  - _name: Jump
+    _behaviour:
+      id: 1
+    _transitions:
+    - _toStateIndex: 4
+      _conditions:
+      - _parameterIndex: 2
+        _conditionOperator: 0
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 207
+      y: 261
+      width: 200
+      height: 50
+  - _name: Attack
+    _behaviour:
+      id: 2
+    _transitions:
+    - _toStateIndex: 4
+      _conditions:
+      - _parameterIndex: 4
+        _conditionOperator: 1
+        _referenceValue: 0
+      - _parameterIndex: 0
+        _conditionOperator: 1
+        _referenceValue: 0
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 4
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 695
+      y: 312
+      width: 200
+      height: 50
+  - _name: Charging Attack
+    _behaviour:
+      id: 3
+    _transitions:
+    - _toStateIndex: 2
+      _conditions:
+      - _parameterIndex: 4
+        _conditionOperator: 0
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 928
+      y: 309
+      width: 200
+      height: 50
+  - _name: InAir
+    _behaviour:
+      id: 4
+    _transitions:
+    - _toStateIndex: 5
+      _conditions:
+      - _parameterIndex: 0
+        _conditionOperator: 0
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 353
+      y: 151
+      width: 200
+      height: 50
+  - _name: Jump Recovery
+    _behaviour:
+      id: 5
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 2
+        _conditionOperator: 0
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 469
+      y: 264
+      width: 200
+      height: 50
+  - _name: Damage
+    _behaviour:
+      id: 6
+    _transitions:
+    - _toStateIndex: 4
+      _conditions:
+      - _parameterIndex: 5
+        _conditionOperator: 1
+        _referenceValue: 0
+      - _parameterIndex: 0
+        _conditionOperator: 1
+        _referenceValue: 0
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 5
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 695
+      y: 205
+      width: 200
+      height: 50
+  _parameters:
+  - _name: OnGround
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Jump
+    _parameterType: 3
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: JumpEnd
+    _parameterType: 3
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: AttackCharge
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Attack
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Damage
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  _defaultState: 0
+  _anyStateTransitions:
+  - _toStateIndex: 6
+    _conditions:
+    - _parameterIndex: 5
+      _conditionOperator: 0
+      _referenceValue: 0
+  - _toStateIndex: 3
+    _conditions:
+    - _parameterIndex: 3
+      _conditionOperator: 0
+      _referenceValue: 0
+  _startFSMMethod: 0
+  _transitionExecutionMethod: 4
+  anyStateEditorRect:
+    serializedVersion: 2
+    x: 942
+    y: 204
+    width: 200
+    height: 50
+  anyStateIsDragged: 0
+  anyStateIsSelected: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: Player_IdleState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000001:
+      type: {class: Player_JumpState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000002:
+      type: {class: Player_AttackState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000003:
+      type: {class: Player_AttackCharge, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000004:
+      type: {class: Player_InAir, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000005:
+      type: {class: Player_JumpRecovery, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000006:
+      type: {class: Player_DamageState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+--- !u!95 &3240292296955349396
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292296955349405}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 564409f09db3b8349a1b09005be673cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &3240292297094159609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3240292297094159610}
+  - component: {fileID: 3240292297094159604}
+  - component: {fileID: 3240292297094159611}
+  m_Layer: 2
+  m_Name: DownThrustAttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3240292297094159610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297094159609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3240292296703653069}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3240292297094159604
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297094159609}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.025, y: -0.29}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.15}
+  m_EdgeRadius: 0
+--- !u!114 &3240292297094159611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297094159609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba135106a8bf4174792340c7e2a898b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3240292297656867611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3240292297656867604}
+  - component: {fileID: 3240292297656867605}
+  - component: {fileID: 3240292297656867606}
+  m_Layer: 2
+  m_Name: AttackArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3240292297656867604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297656867611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3240292296703653069}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3240292297656867605
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297656867611}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.15, y: 0.72}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.65, y: 0.25}
+  m_EdgeRadius: 0
+--- !u!114 &3240292297656867606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240292297656867611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba135106a8bf4174792340c7e2a898b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
