@@ -135,7 +135,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.8}
-  m_Size: {x: 0.5, y: 1.5}
+  m_Size: {x: 1, y: 1.5}
   m_Direction: 0
 --- !u!50 &3240292296955349406
 Rigidbody2D:
@@ -205,7 +205,7 @@ MonoBehaviour:
   _attackAreasParent: {fileID: 3240292296703653069}
   _myAttackArea: {fileID: 3240292297656867606}
   _downThrustAttackArea: {fileID: 3240292297094159611}
-  _attackPower: 0
+  _attackPower: 1
   _attackKnockback: 3
   _maxChargeTime: 2
   _chargePowerMultiplier: 5
@@ -224,6 +224,11 @@ MonoBehaviour:
     m_Bits: 4
   _damageJumpForce: 4
   _invincibilityColor: {r: 1, g: 1, b: 1, a: 0.62352943}
+  _attackReceiveTime: 0.4
+  _maxHP: 30
+  _maxShield: 5
+  _shieldRegeneration: 0.5
+  _stunnedShieldRegeneration: 1
   _spriteRenderer: {fileID: 3240292296955349400}
 --- !u!114 &3240292296955349402
 MonoBehaviour:
@@ -255,8 +260,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 346
-      y: 370
+      x: 181
+      y: 280
       width: 200
       height: 50
   - _name: Jump
@@ -270,8 +275,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 207
-      y: 261
+      x: 44
+      y: 171
       width: 200
       height: 50
   - _name: Attack
@@ -293,8 +298,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 695
-      y: 312
+      x: 527
+      y: 114
       width: 200
       height: 50
   - _name: Charging Attack
@@ -308,8 +313,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 928
-      y: 309
+      x: 758
+      y: 113
       width: 200
       height: 50
   - _name: InAir
@@ -323,8 +328,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 353
-      y: 151
+      x: 188
+      y: 61
       width: 200
       height: 50
   - _name: Jump Recovery
@@ -338,8 +343,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 469
-      y: 264
+      x: 304
+      y: 174
       width: 200
       height: 50
   - _name: Damage
@@ -361,8 +366,23 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 695
-      y: 205
+      x: 525
+      y: 216
+      width: 200
+      height: 50
+  - _name: Stunned
+    _behaviour:
+      id: 7
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 6
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 533
+      y: 311
       width: 200
       height: 50
   _parameters:
@@ -396,6 +416,11 @@ MonoBehaviour:
     _boolValue: 0
     _intValue: 0
     _floatValue: 0
+  - _name: Stunned
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
   _defaultState: 0
   _anyStateTransitions:
   - _toStateIndex: 6
@@ -408,12 +433,17 @@ MonoBehaviour:
     - _parameterIndex: 3
       _conditionOperator: 0
       _referenceValue: 0
+  - _toStateIndex: 7
+    _conditions:
+    - _parameterIndex: 6
+      _conditionOperator: 0
+      _referenceValue: 0
   _startFSMMethod: 0
   _transitionExecutionMethod: 4
   anyStateEditorRect:
     serializedVersion: 2
-    x: 942
-    y: 204
+    x: 767
+    y: 213
     width: 200
     height: 50
   anyStateIsDragged: 0
@@ -434,6 +464,8 @@ MonoBehaviour:
       type: {class: Player_JumpRecovery, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
     00000006:
       type: {class: Player_DamageState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000007:
+      type: {class: Player_StunnedState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!95 &3240292296955349396
 Animator:
   serializedVersion: 3

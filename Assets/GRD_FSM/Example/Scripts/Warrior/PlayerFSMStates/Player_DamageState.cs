@@ -21,9 +21,12 @@ namespace GRD.FSM.Examples
         public override void OnEnter()
         {
             _myWarrior.myAnimator.SetBool("Damage", true);
+            _myWarrior.myAnimator.SetBool("DownThrust", false);
+
             _damageTimeCounter = _myWarrior.damageTime;
             _myWarrior.currentVelocity = 0;
             _myWarrior.takingDamage = true;
+            _myWarrior.CancelAttackCharge();
         }
 
         public override void OnUpdate()

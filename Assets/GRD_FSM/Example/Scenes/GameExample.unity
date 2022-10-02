@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -437,10 +437,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+      propertyPath: anyStateIsDragged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+      propertyPath: anyStateIsSelected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
       propertyPath: _controller
       value: 
-      objectReference: {fileID: 811160926}
+      objectReference: {fileID: 1335998185}
     - target: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
       propertyPath: _facingRight
       value: 0
@@ -471,6 +479,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToPressAttack: 1.5
   _pressTime: 0.5
+--- !u!114 &811160927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+  m_PrefabInstance: {fileID: 811160924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811160925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7880f974cfbf0e149aa7706617cc0181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &811160928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3240292296955349401, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+  m_PrefabInstance: {fileID: 811160924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &811160930 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+  m_PrefabInstance: {fileID: 811160924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811160925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90492001c229a7e44a536f96e360d20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &868707214
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +791,181 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1335998182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1335998183}
+  - component: {fileID: 1335998185}
+  - component: {fileID: 1335998184}
+  m_Layer: 1
+  m_Name: EnemyAIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1335998183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335998182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 811160928}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335998184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335998182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90492001c229a7e44a536f96e360d20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FSM_Name: Enemy AI FSM
+  _states:
+  - _name: Neutral
+    _behaviour:
+      id: 0
+    _transitions:
+    - _toStateIndex: 1
+      _conditions:
+      - _parameterIndex: 0
+        _conditionOperator: 0
+        _referenceValue: 0
+    - _toStateIndex: 2
+      _conditions:
+      - _parameterIndex: 1
+        _conditionOperator: 0
+        _referenceValue: 0
+    - _toStateIndex: 3
+      _conditions:
+      - _parameterIndex: 2
+        _conditionOperator: 0
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 474
+      y: 278
+      width: 200
+      height: 50
+  - _name: GroundStyle
+    _behaviour:
+      id: 1
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 0
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 472
+      y: 101
+      width: 200
+      height: 50
+  - _name: AirStyle
+    _behaviour:
+      id: 2
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 1
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 696
+      y: 124
+      width: 200
+      height: 50
+  - _name: Counterattack
+    _behaviour:
+      id: 3
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 2
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 795
+      y: 211
+      width: 200
+      height: 50
+  _parameters:
+  - _name: GroundStyle
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: AirStyle
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Counterattack
+    _parameterType: 0
+    _boolValue: 1
+    _intValue: 0
+    _floatValue: 0
+  _defaultState: 3
+  _anyStateTransitions: []
+  _startFSMMethod: 0
+  _transitionExecutionMethod: 1
+  anyStateEditorRect:
+    serializedVersion: 2
+    x: 214
+    y: 276
+    width: 200
+    height: 50
+  anyStateIsDragged: 0
+  anyStateIsSelected: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: EnemyAI_Neutral, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000001:
+      type: {class: EnemyAI_GroundStyle, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000002:
+      type: {class: EnemyAI_AirStyle, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000003:
+      type: {class: EnemyAI_Counterattack, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+--- !u!114 &1335998185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335998182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c363bf1e7a8c1b438db6730398ae642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myWarrior: {fileID: 811160927}
+  _AI_FSM: {fileID: 1335998184}
+  _myWarriorFSM: {fileID: 811160930}
+  _player: {fileID: 3240292296998743661}
+  _playerAttackDistance: 2.7
+  _maxRetreatDistance: 7
+  _stageBounds: {x: -6, y: 6}
+  _weakAttackCharge: 0.2
+  _strongAttackCharge: 0.7
 --- !u!1001 &3240292296998743660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,50 +1017,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: anyStateIsDragged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: anyStateIsSelected
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: anyStateEditorRect.x
-      value: 948
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: anyStateEditorRect.y
-      value: 203
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[0].editorRect.x
-      value: 350
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[1].editorRect.x
-      value: 211
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[2].editorRect.x
-      value: 699
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[3].editorRect.x
-      value: 932
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[4].editorRect.x
-      value: 357
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[5].editorRect.x
-      value: 473
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
-      propertyPath: _states.Array.data[6].editorRect.x
-      value: 699
-      objectReference: {fileID: 0}
     - target: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
       propertyPath: _enemyHeadDetectionBoxHalfSize
       value: 0.5
@@ -865,3 +1031,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+--- !u!114 &3240292296998743661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
+  m_PrefabInstance: {fileID: 3240292296998743660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7880f974cfbf0e149aa7706617cc0181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

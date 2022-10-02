@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace GRD.FSM.Examples
 {
@@ -70,15 +71,43 @@ namespace GRD.FSM.Examples
         [SerializeField] float _damageJumpForce;
         [SerializeField] Color _invincibilityColor;
         private float _currentKnockback = 0;
+        private List<ReceivedAttackStruct> _receivedAttacks = new List<ReceivedAttackStruct>();
+        private class ReceivedAttackStruct
+        {
+            private AttackArea _attackArea;
+            private float _time;
+
+            public AttackArea attackArea => _attackArea;
+            public float time { get => _time; set => _time = value; }
+
+            public ReceivedAttackStruct(AttackArea attack, float time)
+            {
+                _attackArea = attack;
+                _time = time;
+            }
+        }
+        [SerializeField] float _attackReceiveTime;
+
+        [Header("Health and Stun")]
+        [SerializeField] float _maxHP;
+        private float _currentHP;
+        [SerializeField] float _maxShield;
+        private float _currentShield;
+        [SerializeField] float _shieldRegeneration;
+        [SerializeField] float _stunnedShieldRegeneration;
 
         [Header("Rendering")]
         [SerializeField] SpriteRenderer _spriteRenderer;
+
+        public Vector3 position => _trans.position;
+        public Vector3 velocity => _rb.velocity;
 
         public WarriorInputController controller => _controller;
 
         public float moveSpeed => _moveSpeed;
         public float moveAcceleration => _moveAcceleration;
         public float currentVelocity { get => _currentVelocity; set => _currentVelocity = value; }
+        public bool facingRight => _facingRight;
 
         public float jumpForce => _jumpForce;
         public float jumpAntecipationTime => _jumpAntecipationTime;
@@ -90,6 +119,8 @@ namespace GRD.FSM.Examples
         public LayerMask groundLayer => _groundLayer;
         public bool onGround { get => _onGround; set => _onGround = value; }
 
+        public float currentAttackCharge => _currentCharge;
+        public bool attacking => _myAttackArea.isActive;
         public float attackCooldownTime => _attackCooldownTime;
         public bool downThrust => _downThrust;
 
@@ -98,16 +129,29 @@ namespace GRD.FSM.Examples
         public float invincibilityTime => _invincibilityTime;
         public float invincibilityTimeCounter { get => _invincibilityTimeCounter; set => _invincibilityTimeCounter = value; }
 
+        public float currentHP => _currentHP;
+        public float currentHPNormalized => _currentHP / _maxHP;
+        public float currentShield { get => _currentShield;
+            set => _currentShield = Mathf.Clamp(value, 0, _maxShield); }
+        public float currentShieldNormalized => _currentShield / _maxShield;
+        public float stunnedShieldRegeneration => _stunnedShieldRegeneration;
+
         private void Awake()
         {
             _trans = transform;
             _rb = GetComponent<Rigidbody2D>();
             _myFSM = GetComponent<FSM_Manager>();
             _myAnimator = GetComponent<Animator>();
+
+            _currentHP = _maxHP;
+            _currentShield = _maxShield;
         }
 
         private void Update()
         {
+            RegenerateShield();
+            CountAttackReceiveTime();
+
             DetectGround();
             DetectEnemyHead();
             DecreaseKnockback();
@@ -158,6 +202,9 @@ namespace GRD.FSM.Examples
 
         private void DetectGround()
         {
+            if (_rb.velocity.y > 0)
+                return;
+
             _groundDetectionRay.origin = _trans.TransformPoint(_groundDetectionRayOrigin);
             _groundDetectionRay.direction = Vector2.down;
             _onGround = Physics2D.Raycast(_groundDetectionRay.origin, _groundDetectionRay.direction, _groundDetectionRayDistance, _groundLayer);
@@ -264,6 +311,22 @@ namespace GRD.FSM.Examples
         private void SuccessfulDefense(float damage, float knockback)
         {
             _currentKnockback = knockback * _defenseKnockbackMultiplier;
+            _currentShield -= damage;
+            if (_currentShield <= 0)
+            {
+                _currentShield = 0;
+                Stun();
+            }
+        }
+
+        private void Stun()
+        {
+            _myFSM.SetBool("Stunned", true);
+        }
+
+        private void RegenerateShield()
+        {
+            _currentShield = Mathf.Min(_currentShield + _shieldRegeneration * Time.deltaTime, _maxShield);
         }
         #endregion
 
@@ -285,6 +348,13 @@ namespace GRD.FSM.Examples
 
         private void ReceiveAttack(AttackArea attackArea)
         {
+            if (_receivedAttacks.Select(x => x.attackArea).Contains(attackArea))
+            {
+                return;
+            }
+
+            _receivedAttacks.Add(new ReceivedAttackStruct(attackArea, _attackReceiveTime));
+
             if (_defending)
             {
                 Vector2 defenseDirection;
@@ -310,6 +380,7 @@ namespace GRD.FSM.Examples
         private void TakeDamage(float damage, float knockback)
         {
             _currentKnockback = knockback;
+            _currentHP = Mathf.Max(_currentHP - damage, 0);
 
             CancelAttackCharge();
             _myFSM.SetBool("Damage", true);
@@ -320,6 +391,19 @@ namespace GRD.FSM.Examples
         {
             if (_invincibilityTimeCounter > 0)
                 _invincibilityTimeCounter -= Time.deltaTime;
+        }
+
+        private void CountAttackReceiveTime()
+        {
+            for(int i = 0; i < _receivedAttacks.Count; i++)
+            {
+                _receivedAttacks[i].time -= Time.deltaTime;
+                if (_receivedAttacks[i].time <= 0)
+                {
+                    _receivedAttacks.RemoveAt(i);
+                    i--;
+                }
+            }
         }
         #endregion
 

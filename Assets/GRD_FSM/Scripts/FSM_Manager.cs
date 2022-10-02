@@ -291,6 +291,28 @@ namespace GRD.FSM
 #endif
         #endregion
 
+        #region Get State Info
+        public int GetStateIdByName(string stateName)
+        {
+            if (!_states.Exists(x => x.name == stateName))
+            {
+                Debug.LogError("FSM does not contain a state named as '" + stateName + "'");
+                return -1;
+            }
+            return _states.IndexOf(_states.First(x => x.name == stateName));
+        }
+
+        public int GetCurrentStateId()
+        {
+            return _currentState;
+        }
+
+        public string GetCurrentStateName()
+        {
+            return _states[_currentState].name;
+        }
+        #endregion
+
         #region Behaviour
         private void Awake()
         {
