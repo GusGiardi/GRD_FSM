@@ -95,6 +95,7 @@ namespace GRD.FSM.Examples
         private float _currentShield;
         [SerializeField] float _shieldRegeneration;
         [SerializeField] float _stunnedShieldRegeneration;
+        private bool _stunned = false;
 
         [Header("Rendering")]
         [SerializeField] SpriteRenderer _spriteRenderer;
@@ -135,6 +136,7 @@ namespace GRD.FSM.Examples
             set => _currentShield = Mathf.Clamp(value, 0, _maxShield); }
         public float currentShieldNormalized => _currentShield / _maxShield;
         public float stunnedShieldRegeneration => _stunnedShieldRegeneration;
+        public bool stunned { get => _stunned; set => _stunned = value; }
 
         private void Awake()
         {

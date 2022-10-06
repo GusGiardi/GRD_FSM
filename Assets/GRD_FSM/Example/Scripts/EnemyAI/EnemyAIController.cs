@@ -18,6 +18,7 @@ namespace GRD.FSM.Examples
 
         [Header("Position Parameters")]
         [SerializeField] float _playerAttackDistance;
+        [SerializeField] float _playerDownThrustHeight;
         [SerializeField] float _maxRetreatDistance;
         [SerializeField] Vector2 _stageBounds;
 
@@ -43,7 +44,11 @@ namespace GRD.FSM.Examples
         public bool inPlayerDownThrustRange =>
             Mathf.Abs(playerDirection) <= playerAttackDistance
                 &&
-            _player.position.y > _myWarrior.position.y;
+            _player.position.y > _myWarrior.position.y + _playerDownThrustHeight;
+        public bool playerIsInMyDownThrustRange =>
+            Mathf.Abs(playerDirection) <= playerAttackDistance
+                &&
+            _myWarrior.position.y > _player.position.y + _playerDownThrustHeight;
         public float maxRetreatDistance => _maxRetreatDistance;
         public int isOutOfStageBounds
         {

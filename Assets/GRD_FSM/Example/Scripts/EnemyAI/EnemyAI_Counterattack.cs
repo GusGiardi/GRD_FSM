@@ -10,10 +10,17 @@ namespace GRD.FSM.Examples
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
+        private const float _minBehaviourTime = 4f;
+        private const float _maxBehaviourTime = 10f;
+        private float _behaviourTime;
+        private float _behaviourTimeCounter;
+
         private const float _downThrustChance = 0.3f;
         private const float _downThrustChanceIterationTime = 0.5f;
         private float _downThrustChanceIterationTimeCounter = 0;
-        private const float _jumpTime = 0.4f;
+
+        private float _counterattackTimeCount = 0;
+        private const float _timeToCounterAttack = 0.1f;
 
         public override void Setup(FSM_Manager manager)
         {
@@ -23,11 +30,47 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
+            _behaviourTimeCounter = 0;
+            _behaviourTime = Mathf.Lerp(_minBehaviourTime, _maxBehaviourTime, Random.value);
+
             _downThrustChanceIterationTimeCounter = 0;
+            _counterattackTimeCount = 0;
         }
 
         public override void OnUpdate()
         {
+            if (_myController.myWarrior.stunned)
+            {
+                _myFSM.SetBool("Counterattack", false);
+                _myFSM.SetBool("Stunned", true);
+                return;
+            }
+
+            if (_myController.player.stunned)
+            {
+                _myFSM.SetBool("Counterattack", false);
+                _myFSM.SetBool("PlayerStunned", true);
+                return;
+            }
+
+            if (_myController.player.invincibilityTimeCounter > 0)
+            {
+                _myFSM.SetBool("Counterattack", false);
+                _myFSM.SetBool("Retreat", true);
+                return;
+            }
+
+            CountBehaviourTime();
+
+            if (_myController.playerAttacking &&
+                _myController.playerIsInMyAttackRange)
+            {
+                CounterattackBehaviour();
+                return;
+            }
+
+            _counterattackTimeCount = 0;
+
             if (_myController.playerCharginAttack || _myController.playerAttacking)
             {
                 PlayerChargingAttackBehaviour(_myController.playerDirection);
@@ -38,11 +81,18 @@ namespace GRD.FSM.Examples
             }
             else
             {
+                DefenseBehaviour();
             }
         }
 
         private void PlayerChargingAttackBehaviour(float playerDirection)
         {
+            if (!_myController.myWarrior.onGround)
+            {
+                _myController.MoveAwayFromPlayer();
+                return;
+            }
+
             if (!_myController.playerIsFacingMe)
             {
                 if (!_myController.playerIsInMyAttackRange)
@@ -86,6 +136,7 @@ namespace GRD.FSM.Examples
 
                 if (_myController.isOutOfStageBounds != 0 || downThrust > 1 - _downThrustChance)
                 {
+                    _myController.Jump();
                     _myFSM.SetBool("AirStyle", true);
                     _myFSM.SetBool("Counterattack", false);
                 }
@@ -100,7 +151,92 @@ namespace GRD.FSM.Examples
 
         private void DefendDownThrustBehaviour()
         {
+            if (_myController.player.velocity.y < 0)
+            {
+                _myController.ReleaseAttack();
+                _myController.UpDefense();
+                _myController.MoveAwayFromPlayer();
+            }
+            else
+            {
+                _myController.StopDefending();
 
+                if (_myController.isOutOfStageBounds > 0)
+                {
+                    _myController.Move(1);
+                }
+                else if (_myController.isOutOfStageBounds < 0)
+                {
+                    _myController.Move(-1);
+                }
+                else
+                {
+                    _myController.MoveAwayFromPlayer();
+                }
+            }
+        }
+
+        private void DefenseBehaviour()
+        {
+            if (!_myController.myWarrior.onGround)
+            {
+                _myController.MoveAwayFromPlayer();
+                return;
+            }
+
+            if (!_myController.inPlayerAttackRange)
+            {
+                _myController.ReleaseAttack();
+                _myController.StopDefending();
+
+                _myController.MoveTowardsPlayer();
+            }
+            else
+            {
+                if (!_myController.isFacingPlayer)
+                {
+                    _myController.FacePlayer();
+                    return;
+                }
+                _myController.Defend();
+                _myController.MoveAwayFromPlayer();
+            }
+        }
+
+        private void CounterattackBehaviour()
+        {
+            if (_counterattackTimeCount < _timeToCounterAttack)
+            {
+                if (!_myController.isFacingPlayer)
+                {
+                    _myController.FacePlayer();
+                    return;
+                }
+                _myController.Defend();
+                _myController.MoveTowardsPlayer();
+
+                _counterattackTimeCount += Time.deltaTime;
+            }
+            else
+            {
+                if (!_myController.chargingAttack)
+                {
+                    _myController.ChargeAttack();
+                }
+                else if (Mathf.Abs(_myController.player.position.y - _myController.myWarrior.position.y) <= 1)
+                {
+                    _myController.ReleaseAttack();
+                }
+            }
+        }
+
+        private void CountBehaviourTime()
+        {
+            _behaviourTimeCounter += Time.deltaTime;
+            if (_behaviourTimeCounter >= _behaviourTime)
+            {
+                _myFSM.SetBool("Counterattack", false);
+            }
         }
     }
 }

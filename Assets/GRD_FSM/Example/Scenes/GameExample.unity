@@ -443,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3240292296955349402, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
       propertyPath: anyStateIsSelected
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3240292296955349403, guid: b71a1980892b1fb4f8d4c52532aed72b, type: 3}
       propertyPath: _controller
@@ -841,6 +841,21 @@ MonoBehaviour:
     _behaviour:
       id: 0
     _transitions:
+    - _toStateIndex: 5
+      _conditions:
+      - _parameterIndex: 4
+        _conditionOperator: 0
+        _referenceValue: 0
+    - _toStateIndex: 6
+      _conditions:
+      - _parameterIndex: 5
+        _conditionOperator: 0
+        _referenceValue: 0
+    - _toStateIndex: 7
+      _conditions:
+      - _parameterIndex: 6
+        _conditionOperator: 0
+        _referenceValue: 0
     - _toStateIndex: 1
       _conditions:
       - _parameterIndex: 0
@@ -856,10 +871,15 @@ MonoBehaviour:
       - _parameterIndex: 2
         _conditionOperator: 0
         _referenceValue: 0
+    - _toStateIndex: 4
+      _conditions:
+      - _parameterIndex: 3
+        _conditionOperator: 0
+        _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 474
-      y: 278
+      x: 583
+      y: 287
       width: 200
       height: 50
   - _name: GroundStyle
@@ -873,8 +893,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 472
-      y: 101
+      x: 582
+      y: 111
       width: 200
       height: 50
   - _name: AirStyle
@@ -888,8 +908,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 696
-      y: 124
+      x: 806
+      y: 134
       width: 200
       height: 50
   - _name: Counterattack
@@ -903,8 +923,68 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 795
-      y: 211
+      x: 905
+      y: 221
+      width: 200
+      height: 50
+  - _name: StrongAirAttack
+    _behaviour:
+      id: 4
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 3
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 894
+      y: 334
+      width: 200
+      height: 50
+  - _name: Stunned
+    _behaviour:
+      id: 5
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 4
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 590
+      y: 441
+      width: 200
+      height: 50
+  - _name: PlayerStunned
+    _behaviour:
+      id: 6
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 5
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 824
+      y: 434
+      width: 200
+      height: 50
+  - _name: Retreat
+    _behaviour:
+      id: 7
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 6
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 351
+      y: 435
       width: 200
       height: 50
   _parameters:
@@ -920,17 +1000,37 @@ MonoBehaviour:
     _floatValue: 0
   - _name: Counterattack
     _parameterType: 0
-    _boolValue: 1
+    _boolValue: 0
     _intValue: 0
     _floatValue: 0
-  _defaultState: 3
+  - _name: StrongAirAttack
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Stunned
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: PlayerStunned
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Retreat
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  _defaultState: 0
   _anyStateTransitions: []
   _startFSMMethod: 0
-  _transitionExecutionMethod: 1
+  _transitionExecutionMethod: 5
   anyStateEditorRect:
     serializedVersion: 2
-    x: 214
-    y: 276
+    x: 324
+    y: 286
     width: 200
     height: 50
   anyStateIsDragged: 0
@@ -945,6 +1045,14 @@ MonoBehaviour:
       type: {class: EnemyAI_AirStyle, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
     00000003:
       type: {class: EnemyAI_Counterattack, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000004:
+      type: {class: EnemyAI_StrongAirAttack, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000005:
+      type: {class: EnemyAI_Stunned, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000006:
+      type: {class: EnemyAI_PlayerStunned, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000007:
+      type: {class: EnemyAI_Retreat, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!114 &1335998185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +1070,7 @@ MonoBehaviour:
   _myWarriorFSM: {fileID: 811160930}
   _player: {fileID: 3240292296998743661}
   _playerAttackDistance: 2.7
+  _playerDownThrustHeight: 0.5
   _maxRetreatDistance: 7
   _stageBounds: {x: -6, y: 6}
   _weakAttackCharge: 0.2

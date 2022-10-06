@@ -18,6 +18,7 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
+            _myWarrior.stunned = true;
             _myWarrior.myAnimator.SetBool("Stunned", true);
         }
 
@@ -33,6 +34,7 @@ namespace GRD.FSM.Examples
 
         public override void OnExit()
         {
+            _myWarrior.stunned = false;
             _myFSM.SetBool("Stunned", false);
             _myWarrior.myAnimator.SetBool("Stunned", false);
         }

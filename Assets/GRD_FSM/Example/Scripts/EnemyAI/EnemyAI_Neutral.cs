@@ -12,6 +12,11 @@ namespace GRD.FSM.Examples
 
         private bool _chooseBehaviour;
 
+        private const float _groundStyleChance = 0.3f;
+        private const float _airStyleChance = 0.55f;
+        private const float _counterAttackChance = 0.8f;
+        private const float _strongAirChance = 0.2f;
+
         public override void Setup(FSM_Manager manager)
         {
             _myFSM = manager;
@@ -32,7 +37,23 @@ namespace GRD.FSM.Examples
                 return;
             }
 
-            _myFSM.SetBool("GroundStyle", true);
+            float rnd = Random.value;
+            if (rnd <= _groundStyleChance)
+            {
+                _myFSM.SetBool("GroundStyle", true);
+            }
+            else if (rnd <= _airStyleChance)
+            {
+                _myFSM.SetBool("AirStyle", true);
+            }
+            else if (rnd <= _counterAttackChance)
+            {
+                _myFSM.SetBool("Counterattack", true);
+            }
+            else
+            {
+                _myFSM.SetBool("StrongAirAttack", true);
+            }
         }
     }
 }

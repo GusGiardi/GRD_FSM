@@ -10,14 +10,48 @@ namespace GRD.FSM.Examples
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
+        private const float _minBehaviourTime = 4f;
+        private const float _maxBehaviourTime = 10f;
+        private float _behaviourTime;
+        private float _behaviourTimeCounter;
+
         public override void Setup(FSM_Manager manager)
         {
             _myFSM = manager;
             _myController = manager.GetComponent<EnemyAIController>();
         }
 
+        public override void OnEnter()
+        {
+            _behaviourTimeCounter = 0;
+            _behaviourTime = Mathf.Lerp(_minBehaviourTime, _maxBehaviourTime, Random.value);
+        }
+
         public override void OnUpdate()
         {
+            if (_myController.myWarrior.stunned)
+            {
+                _myFSM.SetBool("GroundStyle", false);
+                _myFSM.SetBool("Stunned", true);
+                return;
+            }
+
+            if (_myController.player.stunned)
+            {
+                _myFSM.SetBool("GroundStyle", false);
+                _myFSM.SetBool("PlayerStunned", true);
+                return;
+            }
+
+            if (_myController.player.invincibilityTimeCounter > 0)
+            {
+                _myFSM.SetBool("GroundStyle", false);
+                _myFSM.SetBool("Retreat", true);
+                return;
+            }
+
+            CountBehaviourTime();
+
             if (_myController.playerIsFacingMe && (_myController.playerCharginAttack || _myController.playerAttacking))
             {
                 PlayerChargingAttackBehaviour(_myController.playerDirection);
@@ -35,6 +69,13 @@ namespace GRD.FSM.Examples
         private void PlayerChargingAttackBehaviour(float playerDirection)
         {
             _myController.ReleaseAttack();
+
+            if (!_myController.myWarrior.onGround)
+            {
+                _myController.MoveAwayFromPlayer();
+                _myController.DownThrust();
+                return;
+            }
 
             if (_myController.inPlayerAttackRange)
             {
@@ -71,6 +112,13 @@ namespace GRD.FSM.Examples
 
         private void AttackBehaviour(float playerDirection)
         {
+            if (!_myController.myWarrior.onGround)
+            {
+                _myController.MoveTowardsPlayer();
+                _myController.DownThrust();
+                return;
+            }
+
             if (!_myController.playerIsInMyAttackRange)
             {
                 _myController.StopDefending();
@@ -86,6 +134,15 @@ namespace GRD.FSM.Examples
                 {
                     _myController.ReleaseAttack();
                 }
+            }
+        }
+
+        private void CountBehaviourTime()
+        {
+            _behaviourTimeCounter += Time.deltaTime;
+            if (_behaviourTimeCounter >= _behaviourTime)
+            {
+                _myFSM.SetBool("GroundStyle", false);
             }
         }
     }

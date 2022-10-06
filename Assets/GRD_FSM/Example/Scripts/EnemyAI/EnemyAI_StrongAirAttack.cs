@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Air Style")]
-    public class EnemyAI_AirStyle : FSM_StateBehaviour
+    [FSM_Behaviour("Enemy AI/Strong Air Attack")]
+    public class EnemyAI_StrongAirAttack : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
@@ -16,9 +16,11 @@ namespace GRD.FSM.Examples
         private float _behaviourTimeCounter;
 
         private const float _minJumpTime = 0.1f;
-        private const float _maxJumpTime = 3f;
+        private const float _maxJumpTime = 0.3f;
 
         private bool _jump;
+
+        private const float _downThrustDistance = 1f;
 
         private enum BehaviourState
         {
@@ -46,21 +48,21 @@ namespace GRD.FSM.Examples
         {
             if (_myController.myWarrior.stunned)
             {
-                _myFSM.SetBool("AirStyle", false);
+                _myFSM.SetBool("StrongAirAttack", false);
                 _myFSM.SetBool("Stunned", true);
                 return;
             }
 
             if (_myController.player.stunned)
             {
-                _myFSM.SetBool("AirStyle", false);
+                _myFSM.SetBool("StrongAirAttack", false);
                 _myFSM.SetBool("PlayerStunned", true);
                 return;
             }
 
             if (_myController.player.invincibilityTimeCounter > 0)
             {
-                _myFSM.SetBool("AirStyle", false);
+                _myFSM.SetBool("StrongAirAttack", false);
                 _myFSM.SetBool("Retreat", true);
                 return;
             }
@@ -95,7 +97,7 @@ namespace GRD.FSM.Examples
                 return;
             }
 
-            if (_myController.isOutOfStageBounds != 0 || 
+            if (_myController.isOutOfStageBounds != 0 ||
                 Mathf.Abs(_myController.playerDirection) > _myController.maxRetreatDistance)
             {
                 _behaviourState = BehaviourState.Attack;
@@ -105,7 +107,6 @@ namespace GRD.FSM.Examples
         private void AttackBehaviour()
         {
             if (_myController.inPlayerAttackRange &&
-                _myController.playerIsFacingMe && 
                 (_myController.playerCharginAttack || _myController.playerAttacking) &&
                 _myController.myWarrior.position.y - _myController.player.position.y < 2)
             {
@@ -122,7 +123,7 @@ namespace GRD.FSM.Examples
                     return;
                 }
 
-                if (!_myController.player.onGround && 
+                if (!_myController.player.onGround &&
                     Mathf.Abs(_myController.playerDirection) <= Mathf.Abs(_myController.player.velocity.x) + 1)
                 {
                     DefendDownThrustBehaviour();
@@ -135,10 +136,11 @@ namespace GRD.FSM.Examples
                 _myController.MoveTowardsPlayer();
 
                 if (_myController.playerDirection * _myController.myWarrior.velocity.x > 0 &&
-                    Mathf.Abs(_myController.playerDirection) < _myController.maxRetreatDistance &&
-                    Mathf.Abs(_myController.myWarrior.velocity.x) > Mathf.Abs(_myController.playerDirection))
+                    Mathf.Abs(_myController.playerDirection) < _myController.maxRetreatDistance * 2 &&
+                    Mathf.Abs(_myController.myWarrior.velocity.x) > Mathf.Abs(_myController.playerDirection) / 2)
                 {
                     _myController.Jump();
+                    
                     if (_myController.playerIsInMyAttackRange)
                     {
                         _myController.Invoke("CancelJump", _minJumpTime);
@@ -153,25 +155,50 @@ namespace GRD.FSM.Examples
             {
                 _jump = true;
 
-                _myController.ReleaseAttack();
                 _myController.StopDefending();
 
-                if (Mathf.Abs(_myController.playerDirection) > _myController.playerAttackDistance)
+                if (!_myController.isFacingPlayer)
                 {
-                    if (Mathf.Abs(_myController.myWarrior.velocity.x) < Mathf.Abs(_myController.playerDirection))
+                    _myController.FacePlayer();
+                    return;
+                }
+
+                if (!_myController.chargingAttack)
+                { 
+                    if (Mathf.Abs(_myController.playerDirection) > _myController.playerAttackDistance)
                     {
-                        _myController.MoveTowardsPlayer();
+                        if (Mathf.Abs(_myController.myWarrior.velocity.x) < Mathf.Abs(_myController.playerDirection))
+                        {
+                            _myController.MoveTowardsPlayer();
+                        }
+                        else
+                        {
+                            _myController.StopMoving();
+                        }
                     }
                     else
                     {
                         _myController.StopMoving();
                     }
                 }
-                else
+
+                if (_myController.playerIsInMyDownThrustRange && 
+                    Mathf.Abs(_myController.playerDirection) < _downThrustDistance)
                 {
-                    _myController.StopMoving();
+                    _myController.ReleaseAttack();
+                    _myController.DownThrust();
+                    return;
                 }
-                _myController.DownThrust();
+
+                if (!_myController.chargingAttack)
+                {
+                    _myController.ChargeAttack();
+                }
+                else if (_myController.playerIsInMyAttackRange && 
+                    Mathf.Abs(_myController.player.position.y - _myController.myWarrior.position.y) <= 1)
+                {
+                    _myController.ReleaseAttack();
+                }
             }
         }
 
@@ -253,7 +280,7 @@ namespace GRD.FSM.Examples
             _behaviourTimeCounter += Time.deltaTime;
             if (_behaviourTimeCounter >= _behaviourTime)
             {
-                _myFSM.SetBool("AirStyle", false);
+                _myFSM.SetBool("StrongAirAttack", false);
             }
         }
     }
