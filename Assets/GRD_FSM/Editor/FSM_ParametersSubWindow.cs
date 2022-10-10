@@ -132,6 +132,7 @@ namespace GRD.FSM
                 }
             }
 
+            DrawParameterType(serializedParameter);
             string newName = EditorGUILayout.TextField(serializedParameter.FindPropertyRelative("_name").stringValue, GUILayout.ExpandWidth(true));
             serializedParameter.FindPropertyRelative("_name").stringValue = DefineNewOriginalParameterName(newName, 0, parameterIndex);
 
@@ -148,6 +149,27 @@ namespace GRD.FSM
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
+        }
+
+        private void DrawParameterType(SerializedProperty serializedParameter)
+        {
+            FSM_Parameter.ParameterType parameterType = (FSM_Parameter.ParameterType)serializedParameter.FindPropertyRelative("_parameterType").enumValueIndex;
+
+            switch (parameterType)
+            {
+                case FSM_Parameter.ParameterType.Boolean:
+                    EditorGUILayout.LabelField("B", GUILayout.MaxWidth(10));
+                    break;
+                case FSM_Parameter.ParameterType.Trigger:
+                    EditorGUILayout.LabelField("T", GUILayout.MaxWidth(10));
+                    break;
+                case FSM_Parameter.ParameterType.Integer:
+                    EditorGUILayout.LabelField("I", GUILayout.MaxWidth(10));
+                    break;
+                case FSM_Parameter.ParameterType.Float:
+                    EditorGUILayout.LabelField("F", GUILayout.MaxWidth(10));
+                    break;
+            }
         }
 
         private void DrawParameterValue(SerializedProperty serializedParameter)
