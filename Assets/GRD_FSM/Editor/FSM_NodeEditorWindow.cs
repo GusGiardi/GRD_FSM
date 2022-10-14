@@ -26,8 +26,9 @@ namespace GRD.FSM
         GUIStyle _noDataTextStyle;
         GUIStyle _stateBoxStyle;
         GUIStyle _anyStateBoxStyle;
-        GUIStyle _defualStateBoxStyle;
+        GUIStyle _defaultStateBoxStyle;
         GUIStyle _selectedStateBoxStyle;
+        GUIStyle _runningStateBoxStyle;
         GUIStyle _selectionPropSubWindowStyle;
 
         private Vector2 offset;
@@ -65,17 +66,23 @@ namespace GRD.FSM
             _anyStateBoxStyle.alignment = TextAnchor.MiddleCenter;
             _anyStateBoxStyle.normal.textColor = Color.white;
 
-            _defualStateBoxStyle = new GUIStyle();
-            _defualStateBoxStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
-            _defualStateBoxStyle.border = new RectOffset(12, 12, 12, 12);
-            _defualStateBoxStyle.alignment = TextAnchor.MiddleCenter;
-            _defualStateBoxStyle.normal.textColor = Color.white;
+            _defaultStateBoxStyle = new GUIStyle();
+            _defaultStateBoxStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
+            _defaultStateBoxStyle.border = new RectOffset(12, 12, 12, 12);
+            _defaultStateBoxStyle.alignment = TextAnchor.MiddleCenter;
+            _defaultStateBoxStyle.normal.textColor = Color.white;
 
             _selectedStateBoxStyle = new GUIStyle();
             _selectedStateBoxStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node5.png") as Texture2D;
             _selectedStateBoxStyle.border = new RectOffset(12, 12, 12, 12);
             _selectedStateBoxStyle.alignment = TextAnchor.MiddleCenter;
             _selectedStateBoxStyle.normal.textColor = Color.white;
+
+            _runningStateBoxStyle = new GUIStyle();
+            _runningStateBoxStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node4.png") as Texture2D;
+            _runningStateBoxStyle.border = new RectOffset(12, 12, 12, 12);
+            _runningStateBoxStyle.alignment = TextAnchor.MiddleCenter;
+            _runningStateBoxStyle.normal.textColor = Color.white;
 
             if (_selectionPropertiesSubWindow != null)
                 _selectionPropertiesSubWindow.DefineStyles();
@@ -124,7 +131,7 @@ namespace GRD.FSM
             _serializedObject.ApplyModifiedProperties();
             _serializedObject.Update();
 
-            if (GUI.changed) Repaint();
+            if (GUI.changed || EditorApplication.isPlaying) Repaint();
         }
 
         void ProcessEvents()
@@ -250,12 +257,20 @@ namespace GRD.FSM
         private void DrawStates()
         {
             SerializedProperty statesProperty = _serializedObject.FindProperty("_states");
+            int currentRunningStateIndex = _serializedObject.FindProperty("_currentState").intValue;
+            int defaultStateIndex = _serializedObject.FindProperty("_defaultState").intValue;
             List<FSM_State> stateList = (List<FSM_State>)statesProperty.GetValue();
             for (int i = 0; i < stateList.Count; i++)
             {
                 GUIStyle unselectedStyle =
-                    _serializedObject.FindProperty("_defaultState").intValue == i ?
-                    _defualStateBoxStyle : _stateBoxStyle;
+                    defaultStateIndex == i ?
+                    _defaultStateBoxStyle : _stateBoxStyle;
+                if (EditorApplication.isPlaying)
+                {
+                    unselectedStyle =
+                        currentRunningStateIndex == i ?
+                        _runningStateBoxStyle : unselectedStyle;
+                }
                 FSM_StateBox.Draw(stateList[i], unselectedStyle, _selectedStateBoxStyle);
             }
         }

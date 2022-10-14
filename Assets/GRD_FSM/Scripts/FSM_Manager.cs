@@ -30,7 +30,7 @@ namespace GRD.FSM
         }
         [SerializeField] TransitionMethod _transitionExecutionMethod = TransitionMethod.Update;
 
-        private int _currentState = 0;
+        [SerializeField] int _currentState = 0;
 
         #region Any State Editor
 #if UNITY_EDITOR
