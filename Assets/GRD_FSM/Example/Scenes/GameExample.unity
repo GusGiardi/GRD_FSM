@@ -12877,7 +12877,8 @@ MonoBehaviour:
   m_text: <b>Fighting Sword Master</b> was developed to demonstrate the capability
     of GRD_FSM asset. This asset implements a Finite State Machine in Unity, with
     a node editor and simple configuration. This game code and GRD_FSM asset can
-    be found at <link="https://www.google.com/"><u><color=#00F>my github repository</link></u></color>.
+    be found at <link="https://github.com/GusGiardi/GRD_FSM"><u><color=#00F>my github
+    repository</link></u></color>.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2bfc21cabf19e0844a950a569478a260, type: 2}
   m_sharedMaterial: {fileID: -4398817565847427227, guid: 2bfc21cabf19e0844a950a569478a260, type: 2}
