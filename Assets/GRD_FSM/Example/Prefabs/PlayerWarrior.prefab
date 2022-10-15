@@ -196,7 +196,6 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  _onGround: 0
   _enemyHeadDetectionBoxSize: {x: 0.5, y: 0.01}
   _otherPlayerLayer:
     serializedVersion: 2
@@ -205,15 +204,12 @@ MonoBehaviour:
   _attackAreasParent: {fileID: 3240292296703653069}
   _myAttackArea: {fileID: 3240292297656867606}
   _downThrustAttackArea: {fileID: 3240292297094159611}
-  _attackPower: 1
+  _attackPower: 2
   _attackKnockback: 3
   _maxChargeTime: 2
-  _chargePowerMultiplier: 5
-  _currentCharge: 0
+  _chargePowerMultiplier: 3
   _attackCooldownTime: 0.75
   _downThrust: 0
-  _defending: 0
-  _upDefense: 0
   _defenseVelocityMultiplier: 0.3
   _defenseKnockbackMultiplier: 0.5
   _maxDotProdForSuccessfulDefense: -0.5
@@ -225,10 +221,10 @@ MonoBehaviour:
   _damageJumpForce: 4
   _invincibilityColor: {r: 1, g: 1, b: 1, a: 0.62352943}
   _attackReceiveTime: 0.4
-  _maxHP: 30
+  _maxHP: 15
   _maxShield: 5
-  _shieldRegeneration: 0.5
-  _stunnedShieldRegeneration: 1
+  _shieldRegeneration: 0.1
+  _stunnedShieldRegeneration: 1.4
   _spriteRenderer: {fileID: 3240292296955349400}
 --- !u!114 &3240292296955349402
 MonoBehaviour:
@@ -260,8 +256,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 181
-      y: 280
+      x: 264
+      y: 192
       width: 200
       height: 50
   - _name: Jump
@@ -275,8 +271,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 44
-      y: 171
+      x: 127
+      y: 83
       width: 200
       height: 50
   - _name: Attack
@@ -298,8 +294,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 527
-      y: 114
+      x: 610
+      y: 26
       width: 200
       height: 50
   - _name: Charging Attack
@@ -313,8 +309,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 758
-      y: 113
+      x: 842
+      y: 24
       width: 200
       height: 50
   - _name: InAir
@@ -328,8 +324,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 188
-      y: 61
+      x: 271
+      y: -27
       width: 200
       height: 50
   - _name: Jump Recovery
@@ -343,8 +339,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 304
-      y: 174
+      x: 387
+      y: 86
       width: 200
       height: 50
   - _name: Damage
@@ -366,8 +362,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 525
-      y: 216
+      x: 610
+      y: 126
       width: 200
       height: 50
   - _name: Stunned
@@ -381,8 +377,38 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 533
-      y: 311
+      x: 616
+      y: 223
+      width: 200
+      height: 50
+  - _name: Dead
+    _behaviour:
+      id: 8
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 7
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 835
+      y: 349
+      width: 200
+      height: 50
+  - _name: Disable
+    _behaviour:
+      id: 9
+    _transitions:
+    - _toStateIndex: 0
+      _conditions:
+      - _parameterIndex: 8
+        _conditionOperator: 1
+        _referenceValue: 0
+    editorRect:
+      serializedVersion: 2
+      x: 569
+      y: 350
       width: 200
       height: 50
   _parameters:
@@ -421,11 +447,31 @@ MonoBehaviour:
     _boolValue: 0
     _intValue: 0
     _floatValue: 0
+  - _name: Dead
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
+  - _name: Disable
+    _parameterType: 0
+    _boolValue: 0
+    _intValue: 0
+    _floatValue: 0
   _defaultState: 0
   _anyStateTransitions:
+  - _toStateIndex: 8
+    _conditions:
+    - _parameterIndex: 7
+      _conditionOperator: 0
+      _referenceValue: 0
   - _toStateIndex: 6
     _conditions:
     - _parameterIndex: 5
+      _conditionOperator: 0
+      _referenceValue: 0
+  - _toStateIndex: 9
+    _conditions:
+    - _parameterIndex: 8
       _conditionOperator: 0
       _referenceValue: 0
   - _toStateIndex: 3
@@ -440,10 +486,11 @@ MonoBehaviour:
       _referenceValue: 0
   _startFSMMethod: 0
   _transitionExecutionMethod: 4
+  _currentState: 0
   anyStateEditorRect:
     serializedVersion: 2
-    x: 767
-    y: 213
+    x: 853
+    y: 125
     width: 200
     height: 50
   anyStateIsDragged: 0
@@ -466,6 +513,10 @@ MonoBehaviour:
       type: {class: Player_DamageState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
     00000007:
       type: {class: Player_StunnedState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000008:
+      type: {class: Player_DeadState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
+    00000009:
+      type: {class: Player_DisableState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!95 &3240292296955349396
 Animator:
   serializedVersion: 3

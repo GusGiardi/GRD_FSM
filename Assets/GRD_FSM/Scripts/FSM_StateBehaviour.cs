@@ -68,5 +68,10 @@ namespace GRD.FSM
 
         }
         #endregion
+
+        protected void print(object message)
+        {
+            Debug.Log(message);
+        }
     }
 }

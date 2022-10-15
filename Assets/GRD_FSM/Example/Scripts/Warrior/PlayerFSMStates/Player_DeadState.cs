@@ -4,13 +4,11 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Attack")]
-    public class Player_AttackState : FSM_StateBehaviour
+    [FSM_Behaviour("Player/Dead")]
+    public class Player_DeadState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
-
-        private float _attackCooldownTimeCounter;
 
         public override void Setup(FSM_Manager manager)
         {
@@ -20,25 +18,22 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
-            _attackCooldownTimeCounter = _myWarrior.attackCooldownTime;
-            _myWarrior.myAnimator.SetBool("Attack", true);
+            _myWarrior.myAnimator.SetBool("Dead", true);
+            _myWarrior.myAnimator.SetBool("DownThrust", false);
         }
 
         public override void OnUpdate()
         {
             _myWarrior.Move(0);
-            _attackCooldownTimeCounter -= Time.deltaTime;
-            if (_attackCooldownTimeCounter <= 0)
+            if (_myWarrior.currentHP > 0)
             {
-                _myFSM.SetBool("Attack", false);
+                _myFSM.SetBool("Dead", false);
             }
         }
 
         public override void OnExit()
         {
-            _myFSM.SetBool("Attack", false);
-            _myWarrior.myAnimator.SetBool("Attack", false);
-            _myWarrior.EndAttack();
+            _myWarrior.myAnimator.SetBool("Dead", false);
         }
     }
 }

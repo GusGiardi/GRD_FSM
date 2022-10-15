@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -7084726889401672883
     second: Shield_HiRez
+  - first:
+      213: -8518744025795757243
+    second: Draw
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -519,7 +522,7 @@ TextureImporter:
         width: 176
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -540,7 +543,7 @@ TextureImporter:
         width: 28
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -561,7 +564,7 @@ TextureImporter:
         width: 21
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -569,6 +572,27 @@ TextureImporter:
       bones: []
       spriteID: d4b1e8a3e6efdad90800000000000000
       internalID: -7084726889401672883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Draw
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 385
+        width: 50
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b76f9517757c980800000000000000
+      internalID: -8518744025795757243
       vertices: []
       indices: 
       edges: []

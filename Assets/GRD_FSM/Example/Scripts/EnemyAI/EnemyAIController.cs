@@ -64,7 +64,7 @@ namespace GRD.FSM.Examples
 
         public bool playerCharginAttack => _player.currentAttackCharge > 0;
         public bool playerAttacking => _player.attacking;
-        public bool chargingAttack => _myWarriorFSM.GetCurrentState() == _chargingAttackStateId;
+        public bool chargingAttack => _myWarriorFSM.GetCurrentStateId() == _chargingAttackStateId;
         public float attackCharge => _myWarrior.currentAttackCharge;
         public float weakAttackCharge => _weakAttackCharge;
         public float strongAttackCharge => _strongAttackCharge;
@@ -211,7 +211,7 @@ namespace GRD.FSM.Examples
 
         public void Jump()
         {
-            int currentStateId = _myWarriorFSM.GetCurrentState();
+            int currentStateId = _myWarriorFSM.GetCurrentStateId();
             if (currentStateId == _idleStateId ||
                 currentStateId == _jumpStateId ||
                 currentStateId == _inAirStateId)
@@ -231,7 +231,7 @@ namespace GRD.FSM.Examples
 
         public void ChargeAttack()
         {
-            int currentStateId = _myWarriorFSM.GetCurrentState();
+            int currentStateId = _myWarriorFSM.GetCurrentStateId();
             if (currentStateId == _idleStateId ||
                 currentStateId == _jumpStateId ||
                 currentStateId == _inAirStateId ||

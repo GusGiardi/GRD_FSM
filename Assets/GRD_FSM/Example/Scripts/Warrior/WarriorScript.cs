@@ -11,7 +11,15 @@ namespace GRD.FSM.Examples
         Rigidbody2D _rb;
         FSM_Manager _myFSM;
         Animator _myAnimator;
-        public Transform trans => _trans;
+        public Transform trans
+        {
+            get
+            {
+                if (_trans == null)
+                    _trans = transform;
+                return _trans;
+            }
+        }
         public Rigidbody2D rb => _rb;
         public Animator myAnimator => _myAnimator;
 
@@ -35,7 +43,7 @@ namespace GRD.FSM.Examples
         [SerializeField] Vector2 _groundDetectionRayOrigin;
         [SerializeField] float _groundDetectionRayDistance;
         [SerializeField] LayerMask _groundLayer;
-        [SerializeField] private bool _onGround = false;
+        private bool _onGround = false;
         Ray2D _groundDetectionRay = new Ray2D();
 
         [Header("Enemy Head Detection")]
@@ -51,16 +59,16 @@ namespace GRD.FSM.Examples
         [SerializeField] float _attackKnockback;
         [SerializeField] float _maxChargeTime;
         [SerializeField] float _chargePowerMultiplier;
-        [SerializeField] float _currentCharge;
+        private float _currentCharge;
         [SerializeField] float _attackCooldownTime;
         [SerializeField] bool _downThrust;
 
         [Header("Defense")]
-        [SerializeField] bool _defending;
-        [SerializeField] bool _upDefense;
         [SerializeField] float _defenseVelocityMultiplier;
         [SerializeField] float _defenseKnockbackMultiplier;
         [SerializeField] float _maxDotProdForSuccessfulDefense;
+        private bool _defending;
+        private bool _upDefense;
 
         [Header("Damage")]
         [SerializeField] float _damageTime;
@@ -100,7 +108,7 @@ namespace GRD.FSM.Examples
         [Header("Rendering")]
         [SerializeField] SpriteRenderer _spriteRenderer;
 
-        public Vector3 position => _trans.position;
+        public Vector3 position => trans.position;
         public Vector3 velocity => _rb.velocity;
 
         public WarriorInputController controller => _controller;
@@ -108,7 +116,7 @@ namespace GRD.FSM.Examples
         public float moveSpeed => _moveSpeed;
         public float moveAcceleration => _moveAcceleration;
         public float currentVelocity { get => _currentVelocity; set => _currentVelocity = value; }
-        public bool facingRight => _facingRight;
+        public bool facingRight { get => _facingRight; set => _facingRight = value; }
 
         public float jumpForce => _jumpForce;
         public float jumpAntecipationTime => _jumpAntecipationTime;
@@ -384,9 +392,22 @@ namespace GRD.FSM.Examples
             _currentKnockback = knockback;
             _currentHP = Mathf.Max(_currentHP - damage, 0);
 
+            if (_stunned)
+            {
+                _currentShield = _maxShield;
+            }
+
             CancelAttackCharge();
-            _myFSM.SetBool("Damage", true);
             _rb.velocity = new Vector2(_rb.velocity.x, _damageJumpForce);
+
+            if (_currentHP <= 0)
+            {
+                _facingRight = knockback < 0;
+                _myFSM.SetBool("Dead", true);
+                return;
+            }
+
+            _myFSM.SetBool("Damage", true);
         }
 
         private void DecreaseInvincibility()
@@ -406,6 +427,31 @@ namespace GRD.FSM.Examples
                     i--;
                 }
             }
+        }
+
+        public void ResetWarrior()
+        {
+            _currentHP = _maxHP;
+            _currentShield = _maxShield;
+            _currentCharge = 0;
+            _currentVelocity = 0;
+            _currentKnockback = 0;
+            _invincibilityTimeCounter = 0;
+            _defending = false;
+            _upDefense = false;
+            _takingDamage = false;
+            _receivedAttacks.Clear();
+            _stunned = false;
+        }
+
+        public void DisableWarrior()
+        {
+            _myFSM.SetBool("Disable", true);
+        }
+
+        public void EnableWarrior()
+        {
+            _myFSM.SetBool("Disable", false);
         }
         #endregion
 

@@ -497,28 +497,5 @@ namespace GRD.FSM
             }
         }
         #endregion
-
-        #region Editor
-#if UNITY_EDITOR
-        public int GetCurrentState()
-        {
-            return _currentState;
-        }
-
-        public void CheckAllBehaviourReferences()
-        {
-            print(1);
-            foreach (FSM_State st in _states)
-            {
-                print(2);
-                if (st.behaviour != null)
-                {
-                    print(3);
-                    print(st.behaviour.GetType().ToString());
-                }
-            }
-        }
-#endif
-        #endregion
     }
 }

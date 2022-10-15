@@ -28,7 +28,7 @@ namespace GRD.FSM
 
             if (Application.isPlaying)
             {
-                int currentStateIndex = _myFSMManager.GetCurrentState();
+                int currentStateIndex = _myFSMManager.GetCurrentStateId();
                 SerializedProperty currentStateProp = serializedObject.FindProperty("_states").GetArrayElementAtIndex(currentStateIndex);
                 string currentStateName = currentStateProp.FindPropertyRelative("_name").stringValue;
                 EditorGUILayout.LabelField("Current State: " + currentStateName);
