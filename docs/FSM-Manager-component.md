@@ -1,5 +1,6 @@
 # FSM Manager component overview
 The FSM Manager is responsible for managing the state transitions and executing their behaviours. To create a Finite State Machine you must add this component to a GameObject and define some properties in the inspector tab.
+
 ![FSM_Manager Inspector](images/FSM_Manager-Inspector.jpg)
 
 | Name | Description |
@@ -9,6 +10,7 @@ The FSM Manager is responsible for managing the state transitions and executing 
 | Transition Execution Method | The Monobehaviour method(s) where transtions will be verified and executed. You can select more than one option. |
 
 To open the node editor, just click the **Open FSM Editor** button in the FSM Manager inspector.
+
 ![FSM Window](images/FSM-Window.jpg)
 1. The Finite State Machine name is shown in the window title.
 2. States area.

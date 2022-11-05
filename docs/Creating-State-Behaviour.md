@@ -12,9 +12,11 @@ public class Player_IdleState : FSM_StateBehaviour
 ```
 
 You can use the `FSM_Behaviour` attribute to define how the behaviour will be shown in behaviour selection. Otherwise, the behaviour will be shown with its class name.
+
 ![Behaviour Selection](images/BehaviourSelection.png)
 
 After assigning a behaviour to a state, the class name is shown with a button to remove it.
+
 ![Assigned behaviour](images/BehaviourSelected.JPG)
 
 ## Coding the Behaviour
