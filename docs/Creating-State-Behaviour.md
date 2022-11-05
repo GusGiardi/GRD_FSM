@@ -15,7 +15,7 @@ You can use the `FSM_Behaviour` attribute to define how the behaviour will be sh
 ![Behaviour Selection](images/BehaviourSelection.png)
 
 After assigning a behaviour to a state, the class name is shown with a button to remove it.
-![Assigned behaviour(images/BehaviourSelected.jpg)
+![Assigned behaviour](images/BehaviourSelected.JPG)
 
 ## Coding the Behaviour
 The FSM_StateBehaviour class implements a set of functions that are called by FSM_Manager at specific moments. You can override them to implement your logic and control the machine.
