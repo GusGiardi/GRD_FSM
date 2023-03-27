@@ -115,6 +115,11 @@ namespace GRD.FSM
             return null;
         }
 
+        public FSM_Parameter.ParameterType GetParameterType(int parameterIndex)
+        {
+            return _parameters[parameterIndex].parameterType;
+        }
+
         public void SetInt(int parameterIndex, int value)
         {
             FSM_Parameter parameter = _parameters[parameterIndex];
@@ -215,7 +220,32 @@ namespace GRD.FSM
             }
         }
 
-        private void ResetAllTriggers()
+        public void ResetTrigger(int parameterIndex)
+        {
+            FSM_Parameter parameter = _parameters[parameterIndex];
+            if (parameter.parameterType != FSM_Parameter.ParameterType.Trigger)
+            {
+                Debug.LogError("FSM_Parameter " + parameter.name + " is not a Trigger");
+                return;
+            }
+
+            parameter.boolValue = false;
+        }
+
+        public void ResetTrigger(string parameterName)
+        {
+            FSM_Parameter parameter = _parameters.Where((p) => p.name == parameterName).FirstOrDefault();
+            if (parameter == null)
+            {
+                Debug.LogError("Parameter " + parameterName + " not found.");
+            }
+            else
+            {
+                ResetTrigger(_parameters.IndexOf(parameter));
+            }
+        }
+
+        public void ResetAllTriggers()
         {
             IEnumerable<FSM_Parameter> triggers = _parameters.Where((parameter) => parameter.parameterType == FSM_Parameter.ParameterType.Trigger);
 
@@ -357,10 +387,7 @@ namespace GRD.FSM
             //Check Transitions
             if (_transitionExecutionMethod.HasFlag(TransitionMethod.Update))
             {
-                if (CheckTransitions())
-                {
-                    ResetAllTriggers();
-                }
+                CheckTransitions();
             }
         }
 
@@ -374,10 +401,7 @@ namespace GRD.FSM
             //Check Transitions
             if (_transitionExecutionMethod.HasFlag(TransitionMethod.FixedUpdate))
             {
-                if (CheckTransitions())
-                {
-                    ResetAllTriggers();
-                }
+                CheckTransitions();
             }
         }
 
@@ -391,13 +415,10 @@ namespace GRD.FSM
             //Check Transitions
             if (_transitionExecutionMethod.HasFlag(TransitionMethod.LateUpdate))
             {
-                if (CheckTransitions())
-                {
-                    ResetAllTriggers();
-                }
+                CheckTransitions();
             }
 
-            ResetAllTriggers();
+            //ResetAllTriggers();
         }
 
         private bool CheckTransitions()

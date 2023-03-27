@@ -81,17 +81,59 @@ namespace GRD.FSM
                 case ConditionOperator.IsNotTrue:
                     return !(bool)parameterValue;
                 case ConditionOperator.Equals:
-                    return (float)parameterValue == _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue == _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue == _referenceValue;
+                    }
                 case ConditionOperator.NotEqual:
-                    return (float)parameterValue != _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue != _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue != _referenceValue;
+                    }
                 case ConditionOperator.Less:
-                    return (float)parameterValue < _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue < _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue < _referenceValue;
+                    }
                 case ConditionOperator.Greater:
-                    return (float)parameterValue > _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue > _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue > _referenceValue;
+                    }
                 case ConditionOperator.LessOrEqual:
-                    return (float)parameterValue <= _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue <= _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue <= _referenceValue;
+                    }
                 case ConditionOperator.GreaterOrEqual:
-                    return (float)parameterValue >= _referenceValue;
+                    if (parameterValue is int)
+                    {
+                        return (int)parameterValue >= _referenceValue;
+                    }
+                    else
+                    {
+                        return (float)parameterValue >= _referenceValue;
+                    }
             }
 
             return false;

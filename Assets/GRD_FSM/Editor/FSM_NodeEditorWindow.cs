@@ -131,7 +131,6 @@ namespace GRD.FSM
             _serializedObject.ApplyModifiedProperties();
             _serializedObject.Update();
 
-            this.titleContent = new GUIContent("FSM_Editor(" + _serializedObject.FindProperty("FSM_Name").stringValue + ")");
             if (GUI.changed || EditorApplication.isPlaying) Repaint();
         }
 

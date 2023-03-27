@@ -100,6 +100,14 @@ namespace GRD.FSM
                     return false;
             }
 
+            foreach (FSM_Condition condition in _conditions)
+            {
+                if (manager.GetParameterType(condition.parameterIndex) == FSM_Parameter.ParameterType.Trigger)
+                {
+                    manager.ResetTrigger(condition.parameterIndex);
+                }
+            }
+
             return true;
         }
     }
