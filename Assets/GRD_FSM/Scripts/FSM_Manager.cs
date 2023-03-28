@@ -519,5 +519,14 @@ namespace GRD.FSM
             }
         }
         #endregion
+
+#if UNITY_EDITOR
+        private void Reset()
+        {
+            _states = new List<FSM_State>();
+            _parameters = new List<FSM_Parameter>();
+            _anyStateTransitions = new FSM_Transition[0];
+        }
+#endif
     }
 }
