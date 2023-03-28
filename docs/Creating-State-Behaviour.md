@@ -4,20 +4,14 @@ In State Behaviours we code the behaviour assumed by the machine when it is in a
 ```
 using GRD.FSM
 
-[FSM_Behaviour("Player/Idle)]
+[CreateAssetMenu(fileName = "Player - Idle Behaviour", menuName = "FSM Behaviours/Player/Idle", order = 1)]
 public class Player_IdleState : FSM_StateBehaviour
 {
 	// Behaviour code here
 }
 ```
 
-You can use the `FSM_Behaviour` attribute to define how the behaviour will be shown in behaviour selection. Otherwise, the behaviour will be shown with its class name.
-
-![Behaviour Selection](images/BehaviourSelection.png)
-
-After assigning a behaviour to a state, the class name is shown with a button to remove it.
-
-![Assigned behaviour](images/BehaviourSelected.JPG)
+The FSM_StateBehaviour class inherits from ScriptableObject, so you can use CreateAssetMenu attribute to create the asset on editor. After that, just assign the behavior object to the desired state.
 
 ## Coding the Behaviour
 The FSM_StateBehaviour class implements a set of functions that are called by FSM_Manager at specific moments. You can override them to implement your logic and control the machine.
