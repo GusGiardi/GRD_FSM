@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Retreat")]
+    [CreateAssetMenu(fileName = "Enemy - Retreat Behaviour", menuName = "FSM Behaviours/Enemy/Retreat", order = 1)]
     public class EnemyAI_Retreat : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
-        private const float _maxJumpTime = 3f;
+        [SerializeField] float _maxJumpTime = 3f;
 
         public override void Setup(FSM_Manager manager)
         {

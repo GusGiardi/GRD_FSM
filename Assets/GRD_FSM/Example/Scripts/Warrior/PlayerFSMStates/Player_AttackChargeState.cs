@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/AttackCharge")]
-    public class Player_AttackCharge : FSM_StateBehaviour
+    [CreateAssetMenu(fileName = "Player - Attack Charge Behaviour", menuName = "FSM Behaviours/Player/Attack Charge", order = 1)]
+    public class Player_AttackChargeState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;

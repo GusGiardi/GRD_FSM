@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Neutral")]
+    [CreateAssetMenu(fileName = "Enemy - Neutral Behaviour", menuName = "FSM Behaviours/Enemy/Neutral", order = 1)]
     public class EnemyAI_Neutral : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
@@ -12,10 +12,10 @@ namespace GRD.FSM.Examples
 
         private bool _chooseBehaviour;
 
-        private const float _groundStyleChance = 0.3f;
-        private const float _airStyleChance = 0.55f;
-        private const float _counterAttackChance = 0.8f;
-        private const float _strongAirChance = 0.2f;
+        [SerializeField] float _groundStyleChance = 0.3f;
+        [SerializeField] float _airStyleChance = 0.55f;
+        [SerializeField] float _counterAttackChance = 0.8f;
+        [SerializeField] float _strongAirChance = 0.2f;
 
         public override void Setup(FSM_Manager manager)
         {

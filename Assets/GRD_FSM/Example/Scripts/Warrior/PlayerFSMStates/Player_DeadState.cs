@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Dead")]
+    [CreateAssetMenu(fileName = "Player - Dead Behaviour", menuName = "FSM Behaviours/Player/Dead", order = 1)]
     public class Player_DeadState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;

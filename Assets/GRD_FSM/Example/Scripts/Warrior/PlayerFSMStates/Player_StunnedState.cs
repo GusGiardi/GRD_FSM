@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Stunned")]
+    [CreateAssetMenu(fileName = "Player - Stunned Behaviour", menuName = "FSM Behaviours/Player/Stunned", order = 1)]
     public class Player_StunnedState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
+
+        [SerializeField] float _stunnedShieldRegeneration = 1.4f;
 
         public override void Setup(FSM_Manager manager)
         {
@@ -25,7 +27,7 @@ namespace GRD.FSM.Examples
         public override void OnUpdate()
         {
             _myWarrior.Move(0);
-            _myWarrior.currentShield += _myWarrior.stunnedShieldRegeneration * Time.deltaTime;
+            _myWarrior.currentShield += _stunnedShieldRegeneration * Time.deltaTime;
             if (_myWarrior.currentShieldNormalized == 1)
             {
                 _myFSM.SetBool("Stunned", false);

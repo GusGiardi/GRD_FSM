@@ -14,14 +14,15 @@ namespace GRD.FSM
     {
         [SerializeField]
         private string _name;
-        [SerializeReference]
+        [SerializeField]
         private FSM_StateBehaviour _behaviour;
+        private FSM_StateBehaviour _behaviourInstance;
         [SerializeField]
         FSM_Transition[] _transitions;
 
         public string name => _name;
         public FSM_Transition[] transitions => _transitions;
-        public FSM_StateBehaviour behaviour => _behaviour;
+        public FSM_StateBehaviour behaviour => _behaviourInstance;
 
         #region Editor
 #if UNITY_EDITOR
@@ -96,6 +97,14 @@ namespace GRD.FSM
         }
 #endif
         #endregion
+
+        public void CreateBehaviourInstance()
+        {
+            if (_behaviour == null)
+                return;
+            //_behaviourInstance = ScriptableObject.CreateInstance(_behaviour.GetType()) as FSM_StateBehaviour;
+            _behaviourInstance = UnityEngine.Object.Instantiate(_behaviour);
+        }
 
         public int CheckTransitions(FSM_Manager manager)
         {

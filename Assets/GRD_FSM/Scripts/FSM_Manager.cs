@@ -348,6 +348,7 @@ namespace GRD.FSM
         {
             foreach (FSM_State state in _states)
             {
+                state.CreateBehaviourInstance();
                 if (state.behaviour != null)
                 {
                     state.behaviour.Setup(this);

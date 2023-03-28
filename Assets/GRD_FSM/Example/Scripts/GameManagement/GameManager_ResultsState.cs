@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Game Manager/Results")]
+    [CreateAssetMenu(fileName = "Game Manager - Results Behaviour", menuName = "FSM Behaviours/Game Manager/Results Behaviour", order = 1)]
     public class GameManager_ResultsState : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;

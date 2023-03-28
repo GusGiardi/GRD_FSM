@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GRD.FSM
 {
     [System.Serializable]
-    public class FSM_StateBehaviour
+    public class FSM_StateBehaviour : ScriptableObject
     {
         public virtual void Setup(FSM_Manager manager)
         {

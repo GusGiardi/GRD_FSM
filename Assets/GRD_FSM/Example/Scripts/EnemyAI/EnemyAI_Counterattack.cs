@@ -4,23 +4,23 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Counterattack")]
+    [CreateAssetMenu(fileName = "Enemy - Counter Attack Behaviour", menuName = "FSM Behaviours/Enemy/Counter Attack", order = 1)]
     public class EnemyAI_Counterattack : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
-        private const float _minBehaviourTime = 4f;
-        private const float _maxBehaviourTime = 10f;
+        [SerializeField] float _minBehaviourTime = 4f;
+        [SerializeField] float _maxBehaviourTime = 10f;
         private float _behaviourTime;
         private float _behaviourTimeCounter;
 
-        private const float _downThrustChance = 0.3f;
-        private const float _downThrustChanceIterationTime = 0.5f;
+        [SerializeField] float _downThrustChance = 0.3f;
+        [SerializeField] float _downThrustChanceIterationTime = 0.5f;
         private float _downThrustChanceIterationTimeCounter = 0;
 
         private float _counterattackTimeCount = 0;
-        private const float _timeToCounterAttack = 0.1f;
+        [SerializeField] float _timeToCounterAttack = 0.1f;
 
         public override void Setup(FSM_Manager manager)
         {

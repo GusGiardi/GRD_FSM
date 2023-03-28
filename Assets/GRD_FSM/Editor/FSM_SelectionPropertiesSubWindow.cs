@@ -102,31 +102,32 @@ namespace GRD.FSM
 
             SerializedProperty stateProp = statesArrayProp.GetArrayElementAtIndex(_selectedStateIndex);
             EditorGUILayout.PropertyField(stateProp.FindPropertyRelative("_name"));
+            EditorGUILayout.PropertyField(stateProp.FindPropertyRelative("_behaviour"));
 
-            GUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Behaviour", GUILayout.MaxWidth(100.0f));
+            //GUILayout.BeginHorizontal();
+            //EditorGUILayout.LabelField("Behaviour", GUILayout.MaxWidth(100.0f));
 
-            SerializedProperty behaviourProperty = stateProp.FindPropertyRelative("_behaviour");
-            FSM_StateBehaviour behaviourObject = (FSM_StateBehaviour)behaviourProperty.GetValue();
-            if (behaviourObject == null)
-            {
-                if (GUILayout.Button("Assign Behaviour"))
-                {
-                    AssignBehaviourContextMenu(behaviourProperty);
-                }
-            }
-            else
-            {
-                string behaviourTypeName = behaviourObject.GetType().ToString();
-                Rect labelRect = GUILayoutUtility.GetRect(new GUIContent(behaviourTypeName), "label");
-                GUI.Label(labelRect, behaviourTypeName);
-                if (GUILayout.Button("Clear Behaviour"))
-                {
-                    behaviourProperty.SetValue(null);
-                }
-            }
+            //SerializedProperty behaviourProperty = stateProp.FindPropertyRelative("_behaviour");
+            //FSM_StateBehaviour behaviourObject = (FSM_StateBehaviour)behaviourProperty.GetValue();
+            //if (behaviourObject == null)
+            //{
+            //    if (GUILayout.Button("Assign Behaviour"))
+            //    {
+            //        AssignBehaviourContextMenu(behaviourProperty);
+            //    }
+            //}
+            //else
+            //{
+            //    string behaviourTypeName = behaviourObject.GetType().ToString();
+            //    Rect labelRect = GUILayoutUtility.GetRect(new GUIContent(behaviourTypeName), "label");
+            //    GUI.Label(labelRect, behaviourTypeName);
+            //    if (GUILayout.Button("Clear Behaviour"))
+            //    {
+            //        behaviourProperty.SetValue(null);
+            //    }
+            //}
+            //GUILayout.EndHorizontal();
 
-            GUILayout.EndHorizontal();
             SerializedProperty serializedTransitions = stateProp.FindPropertyRelative("_transitions");
             DrawStateTransitionListBox(serializedTransitions, stateProp, statesArrayProp);
 

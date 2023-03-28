@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/InAir")]
-    public class Player_InAir : FSM_StateBehaviour
+    [CreateAssetMenu(fileName = "Player - In Air Behaviour", menuName = "FSM Behaviours/Player/In Air", order = 1)]
+    public class Player_InAirState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;

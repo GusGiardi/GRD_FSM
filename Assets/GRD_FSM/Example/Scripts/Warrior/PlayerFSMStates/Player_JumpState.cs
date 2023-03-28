@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Jump")]
+    [CreateAssetMenu(fileName = "Player - Jump Behaviour", menuName = "FSM Behaviours/Player/Jump", order = 1)]
     public class Player_JumpState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
 
+        [SerializeField] float _jumpAntecipationTime = 0.1f;
         private float _jumpAntecipationTimeCounter;
-        private float _jumpRecoveryTimeCounter;
         private bool _jumpCanceled;
 
         enum JumpStep
@@ -29,8 +29,7 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
-            _jumpAntecipationTimeCounter = _myWarrior.jumpAntecipationTime;
-            _jumpRecoveryTimeCounter = _myWarrior.jumpRecoveryTime;
+            _jumpAntecipationTimeCounter = _jumpAntecipationTime;
             _jumpCanceled = false;
             _currentJumpStep = JumpStep.Antecipation;
 

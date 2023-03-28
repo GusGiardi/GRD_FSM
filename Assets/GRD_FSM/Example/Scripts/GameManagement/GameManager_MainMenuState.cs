@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Game Manager/Main Menu")]
+    [CreateAssetMenu(fileName = "Game Manager - Main Menu Behaviour", menuName = "FSM Behaviours/Game Manager/Main Menu Behaviour", order = 1)]
     public class GameManager_MainMenuState : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;

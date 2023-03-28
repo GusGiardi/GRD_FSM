@@ -10743,8 +10743,7 @@ MonoBehaviour:
   FSM_Name: Game States Manager
   _states:
   - _name: MainMenu
-    _behaviour:
-      id: 0
+    _behaviour: {fileID: 11400000, guid: 7f3f38a43b43c3947b4cac282c44c748, type: 2}
     _transitions:
     - _toStateIndex: 1
       _conditions:
@@ -10758,8 +10757,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: GameSetup
-    _behaviour:
-      id: 1
+    _behaviour: {fileID: 11400000, guid: 0c15c12a343d0b3478eb1999364bd98e, type: 2}
     _transitions:
     - _toStateIndex: 2
       _conditions:
@@ -10773,8 +10771,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: Gameplay
-    _behaviour:
-      id: 2
+    _behaviour: {fileID: 11400000, guid: 3ef1c70da6b2425449ffe2547e91326d, type: 2}
     _transitions:
     - _toStateIndex: 3
       _conditions:
@@ -10788,8 +10785,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: Results
-    _behaviour:
-      id: 3
+    _behaviour: {fileID: 11400000, guid: c13c148778cd71542ac06c489388860b, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -10831,16 +10827,6 @@ MonoBehaviour:
     height: 50
   anyStateIsDragged: 0
   anyStateIsSelected: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: GameManager_MainMenuState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000001:
-      type: {class: GameManager_GameSetupState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000002:
-      type: {class: GameManager_GameplayState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000003:
-      type: {class: GameManager_ResultsState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!1 &1266514291
 GameObject:
   m_ObjectHideFlags: 0
@@ -11426,8 +11412,7 @@ MonoBehaviour:
   FSM_Name: Enemy AI FSM
   _states:
   - _name: Neutral
-    _behaviour:
-      id: 0
+    _behaviour: {fileID: 11400000, guid: f652d7ae56cd0514f92e28e0b9dcad5a, type: 2}
     _transitions:
     - _toStateIndex: 5
       _conditions:
@@ -11471,8 +11456,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: GroundStyle
-    _behaviour:
-      id: 1
+    _behaviour: {fileID: 11400000, guid: 98c38191bc78e424bbde0da9feff22dd, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11486,8 +11470,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: AirStyle
-    _behaviour:
-      id: 2
+    _behaviour: {fileID: 11400000, guid: e17aabce7e324804e9bddefe337747c9, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11501,8 +11484,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: Counterattack
-    _behaviour:
-      id: 3
+    _behaviour: {fileID: 11400000, guid: edc0b10e404060e47a5a0dd98b208938, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11516,8 +11498,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: StrongAirAttack
-    _behaviour:
-      id: 4
+    _behaviour: {fileID: 11400000, guid: fe335576c5586724ab1ad27e3e37098a, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11531,8 +11512,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: Stunned
-    _behaviour:
-      id: 5
+    _behaviour: {fileID: 11400000, guid: 998231735e398434987500d8c89dc466, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11546,8 +11526,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: PlayerStunned
-    _behaviour:
-      id: 6
+    _behaviour: {fileID: 11400000, guid: 955f9ab69f5e5fa41a7a698a8f7c590c, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11561,8 +11540,7 @@ MonoBehaviour:
       width: 200
       height: 50
   - _name: Retreat
-    _behaviour:
-      id: 7
+    _behaviour: {fileID: 11400000, guid: 6e8b511b5aa44a44aad32664108fe3fb, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -11624,24 +11602,6 @@ MonoBehaviour:
     height: 50
   anyStateIsDragged: 0
   anyStateIsSelected: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: EnemyAI_Neutral, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000001:
-      type: {class: EnemyAI_GroundStyle, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000002:
-      type: {class: EnemyAI_AirStyle, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000003:
-      type: {class: EnemyAI_Counterattack, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000004:
-      type: {class: EnemyAI_StrongAirAttack, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000005:
-      type: {class: EnemyAI_Stunned, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000006:
-      type: {class: EnemyAI_PlayerStunned, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000007:
-      type: {class: EnemyAI_Retreat, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!114 &1335998185
 MonoBehaviour:
   m_ObjectHideFlags: 0

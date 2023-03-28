@@ -35,8 +35,6 @@ namespace GRD.FSM.Examples
 
         [Header("Jump")]
         [SerializeField] float _jumpForce;
-        [SerializeField] float _jumpAntecipationTime;
-        [SerializeField] float _jumpRecoveryTime;
         [SerializeField] float _cancelJumpForce;
 
         [Header("Ground Detection")]
@@ -60,7 +58,6 @@ namespace GRD.FSM.Examples
         [SerializeField] float _maxChargeTime;
         [SerializeField] float _chargePowerMultiplier;
         private float _currentCharge;
-        [SerializeField] float _attackCooldownTime;
         [SerializeField] bool _downThrust;
 
         [Header("Defense")]
@@ -71,11 +68,9 @@ namespace GRD.FSM.Examples
         private bool _upDefense;
 
         [Header("Damage")]
-        [SerializeField] float _damageTime;
-        private bool _takingDamage = false;
-        [SerializeField] float _invincibilityTime;
-        private float _invincibilityTimeCounter = 0;
         [SerializeField] LayerMask _damageLayer;
+        private bool _takingDamage = false;
+        private float _invincibilityTimeCounter = 0;
         [SerializeField] float _damageJumpForce;
         [SerializeField] Color _invincibilityColor;
         private float _currentKnockback = 0;
@@ -102,7 +97,6 @@ namespace GRD.FSM.Examples
         [SerializeField] float _maxShield;
         private float _currentShield;
         [SerializeField] float _shieldRegeneration;
-        [SerializeField] float _stunnedShieldRegeneration;
         private bool _stunned = false;
 
         [Header("Rendering")]
@@ -119,8 +113,6 @@ namespace GRD.FSM.Examples
         public bool facingRight { get => _facingRight; set => _facingRight = value; }
 
         public float jumpForce => _jumpForce;
-        public float jumpAntecipationTime => _jumpAntecipationTime;
-        public float jumpRecoveryTime => _jumpRecoveryTime;
         public float cancelJumpForce => _cancelJumpForce;
 
         public Vector2 groundDetectionRayOrigin => _groundDetectionRayOrigin;
@@ -130,12 +122,9 @@ namespace GRD.FSM.Examples
 
         public float currentAttackCharge => _currentCharge;
         public bool attacking => _myAttackArea.isActive;
-        public float attackCooldownTime => _attackCooldownTime;
         public bool downThrust => _downThrust;
 
-        public float damageTime => _damageTime;
         public bool takingDamage { get => _takingDamage; set => _takingDamage = value; }
-        public float invincibilityTime => _invincibilityTime;
         public float invincibilityTimeCounter { get => _invincibilityTimeCounter; set => _invincibilityTimeCounter = value; }
 
         public float currentHP => _currentHP;
@@ -143,7 +132,6 @@ namespace GRD.FSM.Examples
         public float currentShield { get => _currentShield;
             set => _currentShield = Mathf.Clamp(value, 0, _maxShield); }
         public float currentShieldNormalized => _currentShield / _maxShield;
-        public float stunnedShieldRegeneration => _stunnedShieldRegeneration;
         public bool stunned { get => _stunned; set => _stunned = value; }
 
         private void Awake()

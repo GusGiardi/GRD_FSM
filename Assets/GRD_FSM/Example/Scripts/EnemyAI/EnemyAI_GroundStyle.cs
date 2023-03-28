@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Ground Style")]
+    [CreateAssetMenu(fileName = "Enemy - Ground Style Behaviour", menuName = "FSM Behaviours/Enemy/Ground Style", order = 1)]
     public class EnemyAI_GroundStyle : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
-        private const float _minBehaviourTime = 4f;
-        private const float _maxBehaviourTime = 10f;
+        [SerializeField] float _minBehaviourTime = 4f;
+        [SerializeField] float _maxBehaviourTime = 10f;
         private float _behaviourTime;
         private float _behaviourTimeCounter;
 

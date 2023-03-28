@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Stunned")]
+    [CreateAssetMenu(fileName = "Enemy - Stunned Behaviour", menuName = "FSM Behaviours/Enemy/Stunned", order = 1)]
     public class EnemyAI_Stunned : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;

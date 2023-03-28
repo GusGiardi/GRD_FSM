@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Attack")]
+    [CreateAssetMenu(fileName = "Player - Attack Behaviour", menuName = "FSM Behaviours/Player/Attack", order = 1)]
     public class Player_AttackState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
 
+        [SerializeField] float _attackCooldownTime = 0.75f;
         private float _attackCooldownTimeCounter;
 
         public override void Setup(FSM_Manager manager)
@@ -20,7 +21,7 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
-            _attackCooldownTimeCounter = _myWarrior.attackCooldownTime;
+            _attackCooldownTimeCounter = _attackCooldownTime;
             _myWarrior.myAnimator.SetBool("Attack", true);
         }
 

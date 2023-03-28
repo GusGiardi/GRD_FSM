@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Idle")]
+    [CreateAssetMenu(fileName = "Player - Idle Behaviour", menuName = "FSM Behaviours/Player/Idle", order = 1)]
     public class Player_IdleState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;

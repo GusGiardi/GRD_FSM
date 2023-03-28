@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/JumpRecovery")]
-    public class Player_JumpRecovery : FSM_StateBehaviour
+    [CreateAssetMenu(fileName = "Player - Jump Recovery Behaviour", menuName = "FSM Behaviours/Player/Jump Recovery", order = 1)]
+    public class Player_JumpRecoveryState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
 
+        [SerializeField] float _jumpRecoveryTime = 0.25f;
         private float _jumpRecoveryTimeCounter;
 
         public override void Setup(FSM_Manager manager)
@@ -20,7 +21,7 @@ namespace GRD.FSM.Examples
 
         public override void OnEnter()
         {
-            _jumpRecoveryTimeCounter = _myWarrior.jumpRecoveryTime;
+            _jumpRecoveryTimeCounter = _jumpRecoveryTime;
             _myWarrior.myAnimator.SetBool("Jump", true);
         }
 

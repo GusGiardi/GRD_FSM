@@ -241,8 +241,7 @@ MonoBehaviour:
   FSM_Name: Player FSM
   _states:
   - _name: Idle
-    _behaviour:
-      id: 0
+    _behaviour: {fileID: 11400000, guid: de4c6dc8777bd054a87697a78651d2b2, type: 2}
     _transitions:
     - _toStateIndex: 1
       _conditions:
@@ -256,13 +255,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 264
-      y: 192
+      x: 504
+      y: 511
       width: 200
       height: 50
   - _name: Jump
-    _behaviour:
-      id: 1
+    _behaviour: {fileID: 11400000, guid: ed1df8edf08f1f14ab8253e63f93b129, type: 2}
     _transitions:
     - _toStateIndex: 4
       _conditions:
@@ -271,13 +269,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 127
-      y: 83
+      x: 367
+      y: 402
       width: 200
       height: 50
   - _name: Attack
-    _behaviour:
-      id: 2
+    _behaviour: {fileID: 11400000, guid: dbbc1b295febf7347b42550f028ebbb4, type: 2}
     _transitions:
     - _toStateIndex: 4
       _conditions:
@@ -294,13 +291,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 610
-      y: 26
+      x: 850
+      y: 345
       width: 200
       height: 50
   - _name: Charging Attack
-    _behaviour:
-      id: 3
+    _behaviour: {fileID: 11400000, guid: 618121cb7bc77dc498a2ebc359ff19d7, type: 2}
     _transitions:
     - _toStateIndex: 2
       _conditions:
@@ -309,13 +305,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 842
-      y: 24
+      x: 1082
+      y: 343
       width: 200
       height: 50
   - _name: InAir
-    _behaviour:
-      id: 4
+    _behaviour: {fileID: 11400000, guid: 7b497b7862d4f1f4b8f16fb34a8a2c8b, type: 2}
     _transitions:
     - _toStateIndex: 5
       _conditions:
@@ -324,13 +319,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 271
-      y: -27
+      x: 511
+      y: 292
       width: 200
       height: 50
   - _name: Jump Recovery
-    _behaviour:
-      id: 5
+    _behaviour: {fileID: 11400000, guid: b2353c37ddacd0643a0baa388d7e8db0, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -339,13 +333,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 387
-      y: 86
+      x: 627
+      y: 405
       width: 200
       height: 50
   - _name: Damage
-    _behaviour:
-      id: 6
+    _behaviour: {fileID: 11400000, guid: 49c357c9c7a19164185f96b2146183f0, type: 2}
     _transitions:
     - _toStateIndex: 4
       _conditions:
@@ -362,13 +355,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 610
-      y: 126
+      x: 850
+      y: 445
       width: 200
       height: 50
   - _name: Stunned
-    _behaviour:
-      id: 7
+    _behaviour: {fileID: 11400000, guid: 6b7035b338e9c6b4f9c9d878ed4aa0bf, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -377,13 +369,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 616
-      y: 223
+      x: 856
+      y: 542
       width: 200
       height: 50
   - _name: Dead
-    _behaviour:
-      id: 8
+    _behaviour: {fileID: 11400000, guid: 328eea9a843b6884a895c6b8abeaac7a, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -392,13 +383,12 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 835
-      y: 349
+      x: 1074
+      y: 670
       width: 200
       height: 50
   - _name: Disable
-    _behaviour:
-      id: 9
+    _behaviour: {fileID: 11400000, guid: 92852646e086f634083168b08877ab14, type: 2}
     _transitions:
     - _toStateIndex: 0
       _conditions:
@@ -407,8 +397,8 @@ MonoBehaviour:
         _referenceValue: 0
     editorRect:
       serializedVersion: 2
-      x: 569
-      y: 350
+      x: 809
+      y: 669
       width: 200
       height: 50
   _parameters:
@@ -489,34 +479,12 @@ MonoBehaviour:
   _currentState: 0
   anyStateEditorRect:
     serializedVersion: 2
-    x: 853
-    y: 125
+    x: 1093
+    y: 444
     width: 200
     height: 50
   anyStateIsDragged: 0
   anyStateIsSelected: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: Player_IdleState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000001:
-      type: {class: Player_JumpState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000002:
-      type: {class: Player_AttackState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000003:
-      type: {class: Player_AttackCharge, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000004:
-      type: {class: Player_InAir, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000005:
-      type: {class: Player_JumpRecovery, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000006:
-      type: {class: Player_DamageState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000007:
-      type: {class: Player_StunnedState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000008:
-      type: {class: Player_DeadState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
-    00000009:
-      type: {class: Player_DisableState, ns: GRD.FSM.Examples, asm: Assembly-CSharp}
 --- !u!95 &3240292296955349396
 Animator:
   serializedVersion: 3

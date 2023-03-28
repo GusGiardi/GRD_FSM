@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Player Stunned")]
+    [CreateAssetMenu(fileName = "Enemy - Player Stunned Behaviour", menuName = "FSM Behaviours/Enemy/Player Stunned", order = 1)]
     public class EnemyAI_PlayerStunned : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
-        private const float _maxPlayerShield = 0.9f;
+        [SerializeField] float _maxPlayerShield = 0.9f;
 
         public override void Setup(FSM_Manager manager)
         {

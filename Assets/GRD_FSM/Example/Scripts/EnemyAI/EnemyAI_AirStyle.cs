@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Enemy AI/Air Style")]
+    [CreateAssetMenu(fileName = "Enemy - Air Style Behaviour", menuName = "FSM Behaviours/Enemy/Air Style", order = 1)]
     public class EnemyAI_AirStyle : FSM_StateBehaviour
     {
         private FSM_Manager _myFSM;
         private EnemyAIController _myController;
 
-        private const float _minBehaviourTime = 4f;
-        private const float _maxBehaviourTime = 6f;
+        [SerializeField] float _minBehaviourTime = 4f;
+        [SerializeField] float _maxBehaviourTime = 6f;
         private float _behaviourTime;
         private float _behaviourTimeCounter;
 
-        private const float _minJumpTime = 0.1f;
-        private const float _maxJumpTime = 3f;
+        [SerializeField] float _minJumpTime = 0.1f;
+        [SerializeField] float _maxJumpTime = 3f;
 
         private bool _jump;
 

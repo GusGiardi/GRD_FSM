@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Damage")]
+    [CreateAssetMenu(fileName = "Player - Damage Behaviour", menuName = "FSM Behaviours/Player/Damage", order = 1)]
     public class Player_DamageState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
         WarriorScript _myWarrior;
 
+        [SerializeField] float _damageTime = 1;
         private float _damageTimeCounter;
+
+        [SerializeField] float _invincibilityTime = 1;
 
         public override void Setup(FSM_Manager manager)
         {
@@ -23,7 +26,7 @@ namespace GRD.FSM.Examples
             _myWarrior.myAnimator.SetBool("Damage", true);
             _myWarrior.myAnimator.SetBool("DownThrust", false);
 
-            _damageTimeCounter = _myWarrior.damageTime;
+            _damageTimeCounter = _damageTime;
             _myWarrior.currentVelocity = 0;
             _myWarrior.takingDamage = true;
             _myWarrior.CancelAttackCharge();
@@ -42,7 +45,7 @@ namespace GRD.FSM.Examples
         public override void OnExit()
         {
             _myWarrior.takingDamage = false;
-            _myWarrior.invincibilityTimeCounter = _myWarrior.invincibilityTime;
+            _myWarrior.invincibilityTimeCounter = _invincibilityTime;
         }
     }
 }

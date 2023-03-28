@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GRD.FSM.Examples
 {
-    [FSM_Behaviour("Player/Disable")]
+    [CreateAssetMenu(fileName = "Player - Disable Behaviour", menuName = "FSM Behaviours/Player/Disable", order = 1)]
     public class Player_DisableState : FSM_StateBehaviour
     {
         FSM_Manager _myFSM;
